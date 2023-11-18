@@ -13,12 +13,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class MovieServiceImpl implements MovieService {
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
     private final MovieRepository movieRepository;
@@ -33,8 +31,7 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public MovieDTO update(MovieDTO movieDTO) {
         Movie incomingMovie = getMovieById(movieDTO.getId());
-        mapper.updateActorFromDTO(movieDTO, incomingMovie);
-        movieRepository.save(incomingMovie);
+        movieRepository.save(mapper.updateActorFromDTO(movieDTO, incomingMovie));
         return get(incomingMovie.getId());
     }
 

@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -28,17 +28,17 @@ public class MovieDTO {
     @ApiModelProperty(example = "1", notes = "Language Id")
     private Long languageId;
     @ApiModelProperty(example = "3", notes = "Rental Duration of the Movie Object")
-    private Integer rentalDuration = 3;
+    private Integer rentalDuration;
     @ApiModelProperty(example = "4.99", notes = "Rental Rate of the Movie Object")
-    private Double rentalRate = 4.99;
+    private Double rentalRate;
     @ApiModelProperty(example = "120", notes = "Length of the Movie Object")
     private Integer length;
     @ApiModelProperty(example = "19.99", notes = "Replacement Cost of the Movie Object")
-    private Double replacementCost = 19.99;
+    private Double replacementCost;
     @ApiModelProperty(example = "G", notes = "Rating Cost of the Movie Object")
-    private RatingEnums rating = RatingEnums.G;
-    @ApiModelProperty(example = "TRAILERS", notes = "Special Features of the Movie Object")
-    private Set<SpecialFeaturesEnum> specialFeatures;
+    private RatingEnums rating;
+    @ApiModelProperty(example = "TRAILERS, Movie trailers", notes = "Special Features of the Movie Object")
+    private Map<SpecialFeaturesEnum, String> specialFeatures;
     @ApiModelProperty("Last Update of the Movie Object")
     private Date lastUpdate;
     @ApiModelProperty(example = "ACTIVE", notes = "Status of the Movie Object")

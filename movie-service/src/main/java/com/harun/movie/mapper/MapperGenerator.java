@@ -2,9 +2,7 @@ package com.harun.movie.mapper;
 
 import com.harun.movie.dto.MovieDTO;
 import com.harun.movie.model.Movie;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 import java.util.List;
 
@@ -18,5 +16,6 @@ public interface MapperGenerator {
     List<MovieDTO> movieToMovieDTO(List<Movie> movie);
 
     @Mapping(target = "id", ignore = true)
-    void updateActorFromDTO(MovieDTO movieDTO, @MappingTarget Movie movie);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Movie updateActorFromDTO(MovieDTO movieDTO, @MappingTarget() Movie movie);
 }

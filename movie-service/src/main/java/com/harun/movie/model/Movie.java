@@ -12,7 +12,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.Set;
+import java.util.Map;
 
 @Entity
 @Data
@@ -51,9 +51,11 @@ public class Movie extends BaseEntity {
     @Enumerated
     private RatingEnums rating = RatingEnums.G;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "special_feature_map", joinColumns = @JoinColumn(name = "special_features_id"))
+    @MapKeyEnumerated(EnumType.STRING)
     @Column(name = "special_features")
-    @ElementCollection
-    private Set<SpecialFeaturesEnum> specialFeatures;
+    private Map<SpecialFeaturesEnum, String> specialFeatures;
 
     @NotNull
     @Column(name = "last_update")
