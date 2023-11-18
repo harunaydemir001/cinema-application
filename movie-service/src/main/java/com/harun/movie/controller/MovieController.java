@@ -78,7 +78,7 @@ public class MovieController implements BaseController<Long, MovieDTO> {
 
     @ApiOperation(value = "Filter Movie", notes = "Filtered Movie By Selection Field and Return Page")
     @PostMapping("/filter")
-    public ResponseEntity<Response> filter(@PageableDefault(size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+    public ResponseEntity<Response> filter(Pageable pageable,
                                            @ApiParam(value = "Movie DTO") @RequestBody() MovieDTO movieDTO) {
         return ResponseFactory.createResponse(movieServiceImpl.filter(pageable, movieDTO), HttpStatus.OK);
     }

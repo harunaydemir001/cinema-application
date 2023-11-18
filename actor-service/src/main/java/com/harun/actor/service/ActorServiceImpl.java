@@ -17,8 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
-public class ActorServiceImpl implements ActorService{
+public class ActorServiceImpl implements ActorService {
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
 
     private final ActorRepository actorRepository;
@@ -26,8 +25,9 @@ public class ActorServiceImpl implements ActorService{
 
     @Override
     public ActorDTO save(ActorDTO actorDTO) {
-        actorRepository.save(mapper.actorDTOToActor(actorDTO));
-        return actorDTO;
+        Actor actor = mapper.actorDTOToActor(actorDTO);
+        actorRepository.save(actor);
+        return get(actor.getId());
     }
 
     @Override

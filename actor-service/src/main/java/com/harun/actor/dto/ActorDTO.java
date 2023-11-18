@@ -1,6 +1,5 @@
 package com.harun.actor.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.harun.common.enums.StatusEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,7 +15,6 @@ import java.util.Date;
 @ApiModel(value = "Actor", description = "All details about the Actor")
 public class ActorDTO {
     @ApiModelProperty(example = "1", notes = "Id of the Actor")
-    @JsonIgnore
     private String id;
     @ApiModelProperty(example = "name", notes = "Name of the Actor")
     private String name;

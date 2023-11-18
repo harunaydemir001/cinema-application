@@ -27,11 +27,11 @@ public class ActorDALImpl implements ActorDAL {
             query.addCriteria(Criteria.where("id").is(actorDTO.getId()));
         }
 
-        if (!ObjectUtils.isEmpty(actorDTO.getId())) {
+        if (!ObjectUtils.isEmpty(actorDTO.getName())) {
             query.addCriteria(Criteria.where("name").is(actorDTO.getName()));
         }
 
-        if (!ObjectUtils.isEmpty(actorDTO.getId())) {
+        if (!ObjectUtils.isEmpty(actorDTO.getSurname())) {
             query.addCriteria(Criteria.where("surname").is(actorDTO.getSurname()));
         }
 
