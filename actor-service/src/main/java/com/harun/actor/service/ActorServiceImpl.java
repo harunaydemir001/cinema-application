@@ -27,7 +27,7 @@ public class ActorServiceImpl implements ActorService{
     @Override
     public ActorDTO save(ActorDTO actorDTO) {
         actorRepository.save(mapper.actorDTOToActor(actorDTO));
-        return actorDTO;
+        return get(actorDTO.getId());
     }
 
     @Override
