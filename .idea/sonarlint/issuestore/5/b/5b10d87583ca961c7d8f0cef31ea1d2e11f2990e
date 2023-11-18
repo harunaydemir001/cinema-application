@@ -1,0 +1,4 @@
+
+g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(æ’¿•üÿÿÿÿ8ÇÑ¥ú½1
+Ž
+java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(æ’¿•üÿÿÿÿ8ÓÑ¥ú½1
