@@ -29,39 +29,33 @@ public interface MovieRepository extends JpaRepository<Movie, Long>, JpaSpecific
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-            if (!ObjectUtils.isEmpty(movieDTO.getTitle())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("title"), movieDTO.getTitle());
+            if (!ObjectUtils.isEmpty(movieDTO.getName())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("name"), movieDTO.getName());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
-
-            if (!ObjectUtils.isEmpty(movieDTO.getDescription())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("description"), movieDTO.getDescription());
-                mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
-            }
-
 
             if (!ObjectUtils.isEmpty(movieDTO.getReleaseDate())) {
                 Predicate predicate = criteriaBuilder.equal(root.get("release_date"), movieDTO.getReleaseDate());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-            if (!ObjectUtils.isEmpty(movieDTO.getLanguageId())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("language_id"), movieDTO.getLanguageId());
+            if (!ObjectUtils.isEmpty(movieDTO.getLanguage())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("language"), movieDTO.getLanguage());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-            if (!ObjectUtils.isEmpty(movieDTO.getLanguageId())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("language_id"), movieDTO.getLanguageId());
+            if (!ObjectUtils.isEmpty(movieDTO.getGenre())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("genre"), movieDTO.getGenre());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-            if (!ObjectUtils.isEmpty(movieDTO.getRentalDuration())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("rental_duration"), movieDTO.getRentalDuration());
+            if (!ObjectUtils.isEmpty(movieDTO.getQuality())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("quality"), movieDTO.getQuality());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-            if (!ObjectUtils.isEmpty(movieDTO.getRentalRate())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("rental_rate"), movieDTO.getRentalRate());
+            if (!ObjectUtils.isEmpty(movieDTO.getIsOscar())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("is_oscar"), movieDTO.getIsOscar());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
@@ -70,15 +64,11 @@ public interface MovieRepository extends JpaRepository<Movie, Long>, JpaSpecific
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-            if (!ObjectUtils.isEmpty(movieDTO.getReplacementCost())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("replacement_cost"), movieDTO.getReplacementCost());
+            if (!ObjectUtils.isEmpty(movieDTO.getImdbPoint())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("imdb_point"), movieDTO.getImdbPoint());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-            if (!ObjectUtils.isEmpty(movieDTO.getRating())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("rating"), movieDTO.getRating());
-                mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
-            }
 
             if (!ObjectUtils.isEmpty(movieDTO.getSpecialFeatures())) {
                 Predicate predicate = criteriaBuilder.equal(root.get("special_features"), movieDTO.getSpecialFeatures());

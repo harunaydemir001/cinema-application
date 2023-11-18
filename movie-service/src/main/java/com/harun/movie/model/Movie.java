@@ -1,7 +1,8 @@
 package com.harun.movie.model;
 
 import com.harun.common.base.BaseEntity;
-import com.harun.movie.enums.RatingEnums;
+import com.harun.movie.enums.Genre;
+import com.harun.movie.enums.Quality;
 import com.harun.movie.enums.SpecialFeaturesEnum;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
@@ -24,32 +25,15 @@ import java.util.Map;
 public class Movie extends BaseEntity {
 
     @NotNull
-    private String title;
+    private String name;
 
-    private String description;
+    private Integer length;
 
     @Column(name = "release_date")
     private Date releaseDate;
 
-    @NotNull
-    @Column(name = "language_id")
-    private Long languageId;
-
-    @NotNull
-    @Column(name = "rental_duration")
-    private Integer rentalDuration = 3;
-
-    @NotNull
-    @Column(name = "rental_rate")
-    private Double rentalRate = 4.99;
-
-    private Integer length;
-
-    @Column(name = "replacement_cost")
-    private Double replacementCost = 19.99;
-
-    @Enumerated
-    private RatingEnums rating = RatingEnums.G;
+    @Column(name = "imdb_point")
+    private Double imdbPoint;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "special_feature_map", joinColumns = @JoinColumn(name = "special_features_id"))
@@ -60,4 +44,15 @@ public class Movie extends BaseEntity {
     @NotNull
     @Column(name = "last_update")
     private Date lastUpdate;
+
+    @Enumerated
+    private Genre genre;
+
+    @Enumerated
+    private Quality quality;
+
+    private String language;
+
+    @Column(name = "is_oscar")
+    private Boolean isOscar;
 }
