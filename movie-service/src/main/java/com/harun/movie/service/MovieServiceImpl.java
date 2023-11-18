@@ -13,41 +13,29 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MovieServiceImpl implements MovieService {
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
     private final MovieRepository movieRepository;
 
     @Override
     public MovieDTO save(MovieDTO movieDTO) {
-        movieRepository.save(mapper.movieDTOToMovie(movieDTO));
-        return movieDTO;
+        Movie movie = mapper.movieDTOToMovie(movieDTO);
+        movieRepository.save(movie);
+        return get(movie.getId());
     }
 
     @Override
     public MovieDTO update(MovieDTO movieDTO) {
-//        Movie incomingMovie = getMovieById(movieDTO.getId());
-//
-//        Movie updateMovie = Movie.builder()
-//                .withId(incomingMovie.getId())
-//                .withDescription(movieDTO.getDescription())
-//                .withRating(movieDTO.getRating())
-//                .withLength(movieDTO.getLength())
-//                .withLanguageId(movieDTO.getLanguageId())
-//                .withLastUpdate(movieDTO.getLastUpdate())
-//                .withReleaseDate(movieDTO.getReleaseDate())
-//                .withTitle(movieDTO.getTitle())
-//                .withRentalDuration(movieDTO.getRentalDuration())
-//                .withRentalRate(movieDTO.getRentalRate())
-//                .withSpecialFeatures(movieDTO.getSpecialFeatures())
-//                .withReplacementCost(movieDTO.getReplacementCost())
-//                .withStatus(movieDTO.getStatus())
-//                .build();
-//        return mapper.movieToMovieDTO(movieRepository.save(updateMovie));
-        return null;
+        Movie incomingMovie = getMovieById(movieDTO.getId());
+        mapper.updateActorFromDTO(movieDTO, incomingMovie);
+        movieRepository.save(incomingMovie);
+        return get(incomingMovie.getId());
     }
 
     @Override
@@ -62,12 +50,14 @@ public class MovieServiceImpl implements MovieService {
         Movie movie = getMovieById(id);
         return mapper.movieToMovieDTO(movie);
     }
+
     @Override
     public Page<MovieDTO> filter(Pageable pageable, MovieDTO movieDTO) {
         Page<Movie> page = movieRepository.findByFilter(pageable, movieDTO);
         List<MovieDTO> movieDTOList = mapper.movieToMovieDTO(page.getContent());
         return PageMapper.toPage(page, movieDTOList);
     }
+
     @Override
     public Page<MovieDTO> getAll(Pageable pageable) {
 

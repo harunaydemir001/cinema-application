@@ -32,7 +32,10 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public ActorDTO update(ActorDTO actorDTO) {
-        return null;
+        Actor incomingActor = getActorById(actorDTO.getId());
+        mapper.updateActorFromDTO(actorDTO, incomingActor);
+        actorRepository.save(incomingActor);
+        return get(incomingActor.getId());
     }
 
     @Override
@@ -54,6 +57,7 @@ public class ActorServiceImpl implements ActorService {
         List<ActorDTO> actorDTOList = mapper.actorToActorDTO(listActor);
         return new PageImpl<>(actorDTOList, pageable, listActor.size());
     }
+
     @Override
     public Page<ActorDTO> getAll(Pageable pageable) {
         Page<Actor> productPage = actorRepository.findAll(pageable);
