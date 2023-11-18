@@ -1,7 +1,6 @@
 package com.harun.movie.service;
 
 import com.harun.common.enums.StatusEnum;
-import com.harun.common.interfaces.CrudOperationsService;
 import com.harun.movie.dto.MovieDTO;
 import com.harun.movie.mapper.MapperGenerator;
 import com.harun.movie.mapper.MapperGeneratorSingleton;

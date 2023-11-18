@@ -1,5 +1,6 @@
 package com.harun.movie.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.harun.common.enums.StatusEnum;
 import com.harun.movie.enums.RatingEnums;
@@ -19,6 +20,7 @@ import java.util.Set;
 @ApiModel(value = "Movie", description = "All details about the Movie Object")
 public class MovieDTO {
     @ApiModelProperty(example = "1", notes = "Id of the Movie Object")
+    @JsonIgnore
     private Long id;
     @ApiModelProperty(example = "title", notes = "Title of the Movie Object")
     private String title;

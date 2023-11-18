@@ -7,7 +7,6 @@ import com.harun.actor.model.Actor;
 import com.harun.actor.repository.ActorDALImpl;
 import com.harun.actor.repository.ActorRepository;
 import com.harun.common.enums.StatusEnum;
-import com.harun.common.interfaces.CrudOperationsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -28,7 +27,7 @@ public class ActorServiceImpl implements ActorService{
     @Override
     public ActorDTO save(ActorDTO actorDTO) {
         actorRepository.save(mapper.actorDTOToActor(actorDTO));
-        return actorDTO;
+        return get(actorDTO.getId());
     }
 
     @Override
@@ -37,15 +36,15 @@ public class ActorServiceImpl implements ActorService{
     }
 
     @Override
-    public void delete(Long id) {
-        Actor actor = getActorById(Long.toString(id));
+    public void delete(String id) {
+        Actor actor = getActorById(id);
         actor.setStatus(StatusEnum.DELETED);
         actorRepository.save(actor);
     }
 
     @Override
-    public ActorDTO get(Long id) {
-        Actor actor = getActorById(Long.toString(id));
+    public ActorDTO get(String id) {
+        Actor actor = getActorById(id);
         return mapper.actorToActorDTO(actor);
     }
 

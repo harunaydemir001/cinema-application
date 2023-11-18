@@ -1,7 +1,7 @@
 package com.harun.movie.controller;
 
+import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
-import com.harun.common.interfaces.CrudOperationsController;
 import com.harun.common.model.Response;
 import com.harun.movie.dto.MovieDTO;
 import com.harun.movie.service.MovieServiceImpl;
@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
-
 @RestController
 @Api(
         tags = "CRUD REST APIs for Movie in Cinema",
         description = "CRUD REST APIs in Cinema to CREATE, UPDATE, GET, DELETE And FILTER movie details")
 @RequiredArgsConstructor
 @RequestMapping("/movie")
-public class MovieController implements CrudOperationsController<MovieDTO> {
+public class MovieController implements BaseController<Long, MovieDTO> {
     private final MovieServiceImpl movieServiceImpl;
 
     @Override

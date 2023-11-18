@@ -2,8 +2,8 @@ package com.harun.actor.controller;
 
 import com.harun.actor.dto.ActorDTO;
 import com.harun.actor.service.ActorServiceImpl;
+import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
-import com.harun.common.interfaces.CrudOperationsController;
 import com.harun.common.model.Response;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/actor")
-public class ActorController implements CrudOperationsController<ActorDTO> {
+public class ActorController implements BaseController<String, ActorDTO> {
 
     private final ActorServiceImpl actorServiceImpl;
 
@@ -51,7 +51,7 @@ public class ActorController implements CrudOperationsController<ActorDTO> {
             @ApiResponse(code = 200, message = "HTTP Status OK")
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<Response> delete(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") Long id) {
+    public ResponseEntity<Response> delete(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") String id) {
         actorServiceImpl.delete(id);
         return ResponseFactory.createSuccessResponse();
     }
@@ -62,7 +62,7 @@ public class ActorController implements CrudOperationsController<ActorDTO> {
             @ApiResponse(code = 200, message = "HTTP Status OK", response = Response.class)
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Response> get(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") Long id) {
+    public ResponseEntity<Response> get(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") String id) {
         return ResponseFactory.createResponse(actorServiceImpl.get(id), HttpStatus.OK);
     }
 

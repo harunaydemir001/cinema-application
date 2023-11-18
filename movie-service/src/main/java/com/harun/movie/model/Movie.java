@@ -1,6 +1,6 @@
 package com.harun.movie.model;
 
-import com.harun.common.model.BaseStatusAndIdEntity;
+import com.harun.common.base.BaseEntity;
 import com.harun.movie.enums.RatingEnums;
 import com.harun.movie.enums.SpecialFeaturesEnum;
 import io.swagger.annotations.ApiModel;
@@ -21,7 +21,7 @@ import java.util.Set;
 @Table(name = "movie")
 @Where(clause = "status != 'DELETED'")
 @ApiModel(value = "Movie", description = "All details about the Movie Object")
-public class Movie extends BaseStatusAndIdEntity {
+public class Movie extends BaseEntity {
 
     @NotNull
     private String title;
