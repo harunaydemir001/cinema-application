@@ -16,3 +16,9 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  application:
+    name: "movie"
+  profiles:
+    active: "prod"
+  config:
+    import: "optional:configserver:http://localhost:8083/"

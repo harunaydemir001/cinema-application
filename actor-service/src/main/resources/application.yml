@@ -1,6 +1,3 @@
-server:
-  port: 8081
-
 spring:
   data:
     mongodb:
@@ -11,5 +8,11 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  application:
+    name: "actor"
+  profiles:
+    active: "prod"
+  config:
+    import: "optional:configserver:http://localhost:8083/"
 
 

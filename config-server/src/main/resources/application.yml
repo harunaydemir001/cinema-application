@@ -1,0 +1,16 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: "config-server"
+  profiles:
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: "https://github.com/harunaydemir001/cinema-config"
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
