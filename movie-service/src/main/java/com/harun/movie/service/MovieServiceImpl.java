@@ -57,10 +57,9 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public Page<MovieDTO> getAll(Pageable pageable) {
-
-        Page<Movie> productPage = movieRepository.findAll(pageable);
-        List<MovieDTO> productDTOList = mapper.movieToMovieDTO(productPage.getContent());
-        return new PageImpl<>(productDTOList, pageable, productPage.getTotalElements());
+        Page<Movie> moviePage = movieRepository.findAll(pageable);
+        List<MovieDTO> movieDTOList = mapper.movieToMovieDTO(moviePage.getContent());
+        return new PageImpl<>(movieDTOList, pageable, moviePage.getTotalElements());
     }
 
     private Movie getMovieById(Long id) {

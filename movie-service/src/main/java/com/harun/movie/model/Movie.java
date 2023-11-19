@@ -12,6 +12,8 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
 import java.util.Date;
 import java.util.Map;
 
@@ -26,10 +28,13 @@ public class Movie extends BaseEntity {
 
     @NotNull
     private String name;
-
+    @Positive
+    @NotNull
     private Integer length;
 
+    @PastOrPresent
     @Column(name = "release_date")
+    @NotNull
     private Date releaseDate;
 
     @Column(name = "imdb_point")
@@ -53,6 +58,7 @@ public class Movie extends BaseEntity {
 
     private String language;
 
+    @Positive
     @Column(name = "is_oscar")
     private Boolean isOscar;
 }

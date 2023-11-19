@@ -1,7 +1,20 @@
 package com.harun.director.mapper;
 
-import org.mapstruct.Mapper;
+import com.harun.director.dto.DirectorDTO;
+import com.harun.director.model.Director;
+import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper
 public interface MapperGenerator {
+    Director directorDTOToDirector(DirectorDTO directorDTO);
+
+    DirectorDTO directorToDirectorDTO(Director director);
+
+    List<DirectorDTO> directorToDirectorDTO(List<Director> movie);
+    @Mapping(target = "id", ignore = true)
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Director updateDirectorFromDTO(DirectorDTO directorDTO, @MappingTarget() Director director);
+
 }

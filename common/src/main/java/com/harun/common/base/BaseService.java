@@ -1,6 +1,6 @@
 package com.harun.common.base;
 
-public interface BaseService<TId, TEntityDTO> {
+public interface BaseService<TEntityDTO, TId> {
 
     TEntityDTO save(TEntityDTO entityDTO);
 

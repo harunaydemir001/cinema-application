@@ -60,9 +60,9 @@ public class ActorServiceImpl implements ActorService {
 
     @Override
     public Page<ActorDTO> getAll(Pageable pageable) {
-        Page<Actor> productPage = actorRepository.findAll(pageable);
-        List<ActorDTO> productDTOList = mapper.actorToActorDTO(productPage.getContent());
-        return new PageImpl<>(productDTOList, pageable, productPage.getTotalElements());
+        Page<Actor> actorPage = actorRepository.findAll(pageable);
+        List<ActorDTO> actorDTOList = mapper.actorToActorDTO(actorPage.getContent());
+        return new PageImpl<>(actorDTOList, pageable, actorPage.getTotalElements());
     }
 
     private Actor getActorById(String id) {

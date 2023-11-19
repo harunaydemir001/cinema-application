@@ -5,7 +5,7 @@ import com.harun.movie.dto.MovieDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface MovieService extends BaseService<Long, MovieDTO> {
+public interface MovieService extends BaseService<MovieDTO, Long> {
 
     Page<MovieDTO> filter(Pageable pageable, MovieDTO movieDTO);
 

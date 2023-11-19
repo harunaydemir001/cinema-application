@@ -4,20 +4,26 @@ import com.harun.common.enums.StatusEnum;
 import com.harun.movie.enums.Genre;
 import com.harun.movie.enums.Quality;
 import com.harun.movie.enums.SpecialFeaturesEnum;
+import com.harun.movie.model.Movie;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
+
+/**
+ * DTO for {@link Movie}
+ */
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "Movie", description = "All details about the Movie Object")
-public class MovieDTO {
+public class MovieDTO implements Serializable {
     @ApiModelProperty(example = "1", notes = "Id of the Movie Object")
     private Long id;
     @ApiModelProperty(example = "name", notes = "Name of the Movie Object")

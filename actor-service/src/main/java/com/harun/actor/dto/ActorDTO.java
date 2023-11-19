@@ -1,5 +1,6 @@
 package com.harun.actor.dto;
 
+import com.harun.actor.model.Actor;
 import com.harun.common.enums.StatusEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -7,13 +8,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
+
+/**
+ * DTO for {@link Actor}
+ */
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "Actor", description = "All details about the Actor")
-public class ActorDTO {
+
+public class ActorDTO implements Serializable {
     @ApiModelProperty(example = "1", notes = "Id of the Actor")
     private String id;
     @ApiModelProperty(example = "name", notes = "Name of the Actor")

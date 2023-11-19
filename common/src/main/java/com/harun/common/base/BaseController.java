@@ -4,7 +4,7 @@ package com.harun.common.base;
 import com.harun.common.model.Response;
 import org.springframework.http.ResponseEntity;
 
-public interface BaseController<TId, TEntityDTO> {
+public interface BaseController<TEntityDTO, TId> {
 
     ResponseEntity<Response> save(TEntityDTO entityDTO);
 

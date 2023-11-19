@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/actor")
-public class ActorController implements BaseController<String, ActorDTO> {
+public class ActorController implements BaseController<ActorDTO, String> {
 
     private final ActorServiceImpl actorServiceImpl;
 
@@ -75,7 +75,7 @@ public class ActorController implements BaseController<String, ActorDTO> {
         return ResponseFactory.createResponse(actorServiceImpl.getAll(pageable), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Filter Actor", notes = "Filtered Actor By Selection Field and Return Page")
+    @ApiOperation(value = "Filter Actors", notes = "Filtered Actor By Selection Field and Return Page")
     @PostMapping("/filter")
     public ResponseEntity<Response> filter(Pageable pageable,
                                            @ApiParam(value = "Actor DTO") @RequestBody() ActorDTO actorDTO) {

@@ -21,7 +21,7 @@ import javax.validation.Valid;
         description = "CRUD REST APIs in Cinema to CREATE, UPDATE, GET, DELETE And FILTER movie details")
 @RequiredArgsConstructor
 @RequestMapping("/movie")
-public class MovieController implements BaseController<Long, MovieDTO> {
+public class MovieController implements BaseController<MovieDTO, Long> {
     private final MovieServiceImpl movieServiceImpl;
 
     @Override
@@ -74,7 +74,7 @@ public class MovieController implements BaseController<Long, MovieDTO> {
         return ResponseFactory.createResponse(movieServiceImpl.getAll(pageable), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Filter Movie", notes = "Filtered Movie By Selection Field and Return Page")
+    @ApiOperation(value = "Filter Movies", notes = "Filtered Movie By Selection Field and Return Page")
     @PostMapping("/filter")
     public ResponseEntity<Response> filter(Pageable pageable,
                                            @ApiParam(value = "Movie DTO") @RequestBody() MovieDTO movieDTO) {
