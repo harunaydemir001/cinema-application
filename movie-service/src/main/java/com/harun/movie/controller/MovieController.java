@@ -4,7 +4,7 @@ import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
 import com.harun.common.model.Response;
 import com.harun.movie.dto.MovieDTO;
-import com.harun.movie.service.MovieServiceImpl;
+import com.harun.movie.service.MovieService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RequestMapping("/movie")
 public class MovieController implements BaseController<MovieDTO, Long> {
-    private final MovieServiceImpl movieServiceImpl;
+    private final MovieService movieService;
 
     @Override
     @ApiOperation(value = "Save Movie")
@@ -31,7 +31,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     })
     @PostMapping
     public ResponseEntity<Response> save(@ApiParam(value = "Movie DTO", required = true) @Valid @RequestBody MovieDTO movieDTO) {
-        return ResponseFactory.createResponse(movieServiceImpl.save(movieDTO), HttpStatus.CREATED);
+        return ResponseFactory.createResponse(movieService.save(movieDTO), HttpStatus.CREATED);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     })
     @PutMapping
     public ResponseEntity<Response> update(@ApiParam(value = "Movie DTO", required = true) @Valid @RequestBody MovieDTO movieDTO) {
-        return ResponseFactory.createResponse(movieServiceImpl.update(movieDTO), HttpStatus.OK);
+        return ResponseFactory.createResponse(movieService.update(movieDTO), HttpStatus.OK);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> delete(@ApiParam(value = "Movie Id", required = true) @PathVariable("id") Long id) {
-        movieServiceImpl.delete(id);
+        movieService.delete(id);
         return ResponseFactory.createSuccessResponse();
     }
 
@@ -62,7 +62,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     })
     @GetMapping("/{id}")
     public ResponseEntity<Response> get(@ApiParam(value = "Movie Id", required = true) @PathVariable("id") Long id) {
-        return ResponseFactory.createResponse(movieServiceImpl.get(id), HttpStatus.OK);
+        return ResponseFactory.createResponse(movieService.get(id), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get All Movies")
@@ -71,14 +71,14 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     })
     @GetMapping()
     public ResponseEntity<Response> getAll(Pageable pageable) {
-        return ResponseFactory.createResponse(movieServiceImpl.getAll(pageable), HttpStatus.OK);
+        return ResponseFactory.createResponse(movieService.getAll(pageable), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Filter Movies", notes = "Filtered Movie By Selection Field and Return Page")
     @PostMapping("/filter")
     public ResponseEntity<Response> filter(Pageable pageable,
                                            @ApiParam(value = "Movie DTO") @RequestBody() MovieDTO movieDTO) {
-        return ResponseFactory.createResponse(movieServiceImpl.filter(pageable, movieDTO), HttpStatus.OK);
+        return ResponseFactory.createResponse(movieService.filter(pageable, movieDTO), HttpStatus.OK);
     }
 
 }

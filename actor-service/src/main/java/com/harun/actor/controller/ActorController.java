@@ -1,7 +1,7 @@
 package com.harun.actor.controller;
 
 import com.harun.actor.dto.ActorDTO;
-import com.harun.actor.service.ActorServiceImpl;
+import com.harun.actor.service.ActorService;
 import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
 import com.harun.common.model.Response;
@@ -23,7 +23,7 @@ import javax.validation.Valid;
 @RequestMapping("/actor")
 public class ActorController implements BaseController<ActorDTO, String> {
 
-    private final ActorServiceImpl actorServiceImpl;
+    private final ActorService actorService;
 
     @Override
     @ApiOperation(value = "Save Actor")
@@ -32,7 +32,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @PostMapping
     public ResponseEntity<Response> save(@ApiParam(value = "Actor DTO", required = true) @Valid @RequestBody ActorDTO actorDTO) {
-        return ResponseFactory.createResponse(actorServiceImpl.save(actorDTO), HttpStatus.CREATED);
+        return ResponseFactory.createResponse(actorService.save(actorDTO), HttpStatus.CREATED);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @PutMapping
     public ResponseEntity<Response> update(@ApiParam(value = "Actor DTO", required = true) @Valid @RequestBody ActorDTO actorDTO) {
-        return ResponseFactory.createResponse(actorServiceImpl.update(actorDTO), HttpStatus.OK);
+        return ResponseFactory.createResponse(actorService.update(actorDTO), HttpStatus.OK);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> delete(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") String id) {
-        actorServiceImpl.delete(id);
+        actorService.delete(id);
         return ResponseFactory.createSuccessResponse();
     }
 
@@ -63,7 +63,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @GetMapping("/{id}")
     public ResponseEntity<Response> get(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") String id) {
-        return ResponseFactory.createResponse(actorServiceImpl.get(id), HttpStatus.OK);
+        return ResponseFactory.createResponse(actorService.get(id), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get All Actors")
@@ -72,13 +72,13 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @GetMapping()
     public ResponseEntity<Response> getAll(Pageable pageable) {
-        return ResponseFactory.createResponse(actorServiceImpl.getAll(pageable), HttpStatus.OK);
+        return ResponseFactory.createResponse(actorService.getAll(pageable), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Filter Actors", notes = "Filtered Actor By Selection Field and Return Page")
     @PostMapping("/filter")
     public ResponseEntity<Response> filter(Pageable pageable,
                                            @ApiParam(value = "Actor DTO") @RequestBody() ActorDTO actorDTO) {
-        return ResponseFactory.createResponse(actorServiceImpl.filter(pageable, actorDTO), HttpStatus.OK);
+        return ResponseFactory.createResponse(actorService.filter(pageable, actorDTO), HttpStatus.OK);
     }
 }

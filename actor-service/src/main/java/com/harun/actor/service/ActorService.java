@@ -1,13 +1,72 @@
 package com.harun.actor.service;
 
 import com.harun.actor.dto.ActorDTO;
-import com.harun.common.base.BaseService;
+import com.harun.actor.mapper.MapperGenerator;
+import com.harun.actor.mapper.MapperGeneratorSingleton;
+import com.harun.actor.model.Actor;
+import com.harun.actor.repository.ActorDALImpl;
+import com.harun.actor.repository.ActorRepository;
+import com.harun.common.enums.StatusEnum;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-public interface ActorService extends BaseService<ActorDTO, String> {
+import java.util.List;
 
-    Page<ActorDTO> filter(Pageable pageable, ActorDTO actorDTO);
+@Service
+@RequiredArgsConstructor
+public class ActorService implements IActorService {
+    MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
 
-    Page<ActorDTO> getAll(Pageable pageable);
+    private final ActorRepository actorRepository;
+    private final ActorDALImpl actorDALImpl;
+
+    @Override
+    public ActorDTO save(ActorDTO actorDTO) {
+        Actor actor = mapper.actorDTOToActor(actorDTO);
+        actorRepository.save(actor);
+        return get(actor.getId());
+    }
+
+    @Override
+    public ActorDTO update(ActorDTO actorDTO) {
+        Actor incomingActor = getActorById(actorDTO.getId());
+        mapper.updateActorFromDTO(actorDTO, incomingActor);
+        actorRepository.save(incomingActor);
+        return get(incomingActor.getId());
+    }
+
+    @Override
+    public void delete(String id) {
+        Actor actor = getActorById(id);
+        actor.setStatus(StatusEnum.DELETED);
+        actorRepository.save(actor);
+    }
+
+    @Override
+    public ActorDTO get(String id) {
+        Actor actor = getActorById(id);
+        return mapper.actorToActorDTO(actor);
+    }
+
+    @Override
+    public Page<ActorDTO> filter(Pageable pageable, ActorDTO actorDTO) {
+        List<Actor> listActor = actorDALImpl.findByFilter(pageable, actorDTO);
+        List<ActorDTO> actorDTOList = mapper.actorToActorDTO(listActor);
+        return new PageImpl<>(actorDTOList, pageable, listActor.size());
+    }
+
+    @Override
+    public Page<ActorDTO> getAll(Pageable pageable) {
+        Page<Actor> actorPage = actorRepository.findAll(pageable);
+        List<ActorDTO> actorDTOList = mapper.actorToActorDTO(actorPage.getContent());
+        return new PageImpl<>(actorDTOList, pageable, actorPage.getTotalElements());
+    }
+
+    private Actor getActorById(String id) {
+        return actorRepository.findById(id)
+                .orElseThrow(() -> new NullPointerException("Actor not exist with id: " + id));
+    }
 }
