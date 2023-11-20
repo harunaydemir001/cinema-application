@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,6 +22,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/actor")
+@Validated
 public class ActorController implements BaseController<ActorDTO, String> {
 
     private final ActorService actorService;
@@ -31,7 +33,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
             @ApiResponse(code = 201, message = "Actor Created", response = Response.class)
     })
     @PostMapping
-    public ResponseEntity<Response> save(@ApiParam(value = "Actor DTO", required = true) @Valid @RequestBody ActorDTO actorDTO) {
+    public ResponseEntity<Response> save(@ApiParam(value = "Actor DTO", required = true) @RequestBody ActorDTO actorDTO) {
         return ResponseFactory.createResponse(actorService.save(actorDTO), HttpStatus.CREATED);
     }
 
@@ -42,7 +44,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @PutMapping("/{id}")
     public ResponseEntity<Response> update(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") String id,
-                                           @ApiParam(value = "Actor DTO", required = true) @Valid @RequestBody ActorDTO actorDTO) {
+                                           @ApiParam(value = "Actor DTO", required = true) @RequestBody ActorDTO actorDTO) {
         return ResponseFactory.createResponse(actorService.update(actorDTO, id), HttpStatus.OK);
     }
 

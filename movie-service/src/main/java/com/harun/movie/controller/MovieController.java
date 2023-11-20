@@ -10,9 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 
 @RestController
@@ -21,6 +20,7 @@ import javax.validation.Valid;
         description = "CRUD REST APIs in Cinema to CREATE, UPDATE, GET, DELETE And FILTER movie details")
 @RequiredArgsConstructor
 @RequestMapping("/movie")
+@Validated
 public class MovieController implements BaseController<MovieDTO, Long> {
     private final MovieService movieService;
 
@@ -30,7 +30,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
             @ApiResponse(code = 201, message = "Movie Created", response = Response.class)
     })
     @PostMapping
-    public ResponseEntity<Response> save(@ApiParam(value = "Movie DTO", required = true) @Valid @RequestBody MovieDTO movieDTO) {
+    public ResponseEntity<Response> save(@ApiParam(value = "Movie DTO", required = true) @RequestBody MovieDTO movieDTO) {
         return ResponseFactory.createResponse(movieService.save(movieDTO), HttpStatus.CREATED);
     }
 
@@ -41,7 +41,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     })
     @PutMapping("/{id}")
     public ResponseEntity<Response> update(@ApiParam(value = "Movie Id", required = true) @PathVariable("id") Long id,
-                                           @ApiParam(value = "Movie DTO", required = true) @Valid @RequestBody MovieDTO movieDTO) {
+                                           @ApiParam(value = "Movie DTO", required = true) @RequestBody MovieDTO movieDTO) {
         return ResponseFactory.createResponse(movieService.update(movieDTO, id), HttpStatus.OK);
     }
 

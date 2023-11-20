@@ -14,6 +14,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -23,7 +24,7 @@ import java.util.Date;
 @Table(name = "director")
 @Where(clause = "status != 'DELETED'")
 @ApiModel(value = "Director", description = "All details about the Director")
-public class Director extends BaseEntity {
+public class Director extends BaseEntity implements Serializable {
     @NotNull
     private String name;
     @NotNull

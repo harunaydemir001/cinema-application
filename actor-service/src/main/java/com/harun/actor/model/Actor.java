@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 
 @Document(collection = "actor")
@@ -17,7 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "Actor", description = "All details about the Actor Object")
-public class Actor {
+public class Actor implements Serializable {
     @Id
     @Indexed(unique = true)
     private String id;
@@ -30,4 +31,11 @@ public class Actor {
 
     private StatusEnum status = StatusEnum.ACTIVE;
 
+    public void setId(String id) {
+        if (this.id == null) {
+            this.id = id;
+        } else {
+            throw new IllegalStateException("ID can't be updated");
+        }
+    }
 }

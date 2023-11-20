@@ -14,6 +14,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ import java.util.Map;
 @Table(name = "movie")
 @Where(clause = "status != 'DELETED'")
 @ApiModel(value = "Movie", description = "All details about the Movie Object")
-public class Movie extends BaseEntity {
+public class Movie extends BaseEntity implements Serializable {
 
     @NotNull
     private String title;
@@ -38,7 +39,7 @@ public class Movie extends BaseEntity {
     @NotNull
     private Date releaseDate;
 
-    @Positive(message = "Age must be a positive number")
+    @Positive(message = "Imdb Point must be a positive number")
     @Column(name = "imdb_point")
     private Double imdbPoint;
 

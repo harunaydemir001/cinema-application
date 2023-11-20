@@ -35,7 +35,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long>, JpaSpecific
             }
 
             if (!ObjectUtils.isEmpty(movieDTO.getReleaseDate())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("release_date"), movieDTO.getReleaseDate());
+                Predicate predicate = criteriaBuilder.equal(root.get("releaseDate"), movieDTO.getReleaseDate());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
@@ -55,7 +55,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long>, JpaSpecific
             }
 
             if (!ObjectUtils.isEmpty(movieDTO.getIsOscar())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("is_oscar"), movieDTO.getIsOscar());
+                Predicate predicate = criteriaBuilder.equal(root.get("isOscar"), movieDTO.getIsOscar());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
@@ -65,18 +65,18 @@ public interface MovieRepository extends JpaRepository<Movie, Long>, JpaSpecific
             }
 
             if (!ObjectUtils.isEmpty(movieDTO.getImdbPoint())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("imdb_point"), movieDTO.getImdbPoint());
+                Predicate predicate = criteriaBuilder.equal(root.get("imdbPoint"), movieDTO.getImdbPoint());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
 
             if (!ObjectUtils.isEmpty(movieDTO.getSpecialFeatures())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("special_features"), movieDTO.getSpecialFeatures());
+                Predicate predicate = criteriaBuilder.equal(root.get("specialFeatures"), movieDTO.getSpecialFeatures());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
             if (!ObjectUtils.isEmpty(movieDTO.getLastUpdate())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("last_update"), movieDTO.getLastUpdate());
+                Predicate predicate = criteriaBuilder.equal(root.get("lastUpdate"), movieDTO.getLastUpdate());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 

@@ -10,9 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @RestController
 @Api(
@@ -20,6 +19,7 @@ import javax.validation.Valid;
         description = "CRUD REST APIs in Cinema to CREATE, UPDATE, GET, DELETE And FILTER director details")
 @RequiredArgsConstructor
 @RequestMapping("/director")
+@Validated
 public class DirectorController implements BaseController<DirectorDTO, Long> {
 
     private final DirectorService directorService;
@@ -30,7 +30,7 @@ public class DirectorController implements BaseController<DirectorDTO, Long> {
             @ApiResponse(code = 201, message = "Director Created", response = Response.class)
     })
     @PostMapping
-    public ResponseEntity<Response> save(@ApiParam(value = "Director DTO", required = true) @Valid @RequestBody DirectorDTO directorDTO) {
+    public ResponseEntity<Response> save(@ApiParam(value = "Director DTO", required = true) @RequestBody DirectorDTO directorDTO) {
         return ResponseFactory.createResponse(directorService.save(directorDTO), HttpStatus.CREATED);
     }
 
@@ -41,7 +41,7 @@ public class DirectorController implements BaseController<DirectorDTO, Long> {
     })
     @PutMapping("/{id}")
     public ResponseEntity<Response> update(@ApiParam(value = "Director Id", required = true) @PathVariable("id") Long id,
-                                           @ApiParam(value = "Director DTO", required = true) @Valid @RequestBody DirectorDTO directorDTO) {
+                                           @ApiParam(value = "Director DTO", required = true) @RequestBody DirectorDTO directorDTO) {
         return ResponseFactory.createResponse(directorService.update(directorDTO, id), HttpStatus.OK);
     }
 

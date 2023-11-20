@@ -44,7 +44,7 @@ public interface DirectorRepository extends JpaRepository<Director, Long>, JpaSp
             }
 
             if (!ObjectUtils.isEmpty(directorDTO.getLastUpdate())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("last_update"), directorDTO.getLastUpdate());
+                Predicate predicate = criteriaBuilder.equal(root.get("lastUpdate"), directorDTO.getLastUpdate());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
@@ -59,7 +59,7 @@ public interface DirectorRepository extends JpaRepository<Director, Long>, JpaSp
             }
 
             if (!ObjectUtils.isEmpty(directorDTO.getBirthDay())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("birth_day"), directorDTO.getBirthDay());
+                Predicate predicate = criteriaBuilder.equal(root.get("birthDay"), directorDTO.getBirthDay());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 

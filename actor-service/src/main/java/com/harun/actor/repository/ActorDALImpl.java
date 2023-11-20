@@ -36,10 +36,9 @@ public class ActorDALImpl implements ActorDAL {
         }
 
         if (!ObjectUtils.isEmpty(actorDTO.getStatus())) {
-            query.addCriteria(Criteria.where("status").is(actorDTO.getStatus()));
+            query.addCriteria(Criteria.where("status").is(actorDTO.getStatus()).ne("DELETED"));
         }
 
-        query.addCriteria(Criteria.where("status").ne("DELETED"));
         query.skip((long) pageable.getPageNumber() * pageable.getPageSize());
         query.limit(pageable.getPageSize());
 
