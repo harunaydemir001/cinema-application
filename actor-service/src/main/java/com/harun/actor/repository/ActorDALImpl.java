@@ -2,6 +2,7 @@ package com.harun.actor.repository;
 
 import com.harun.actor.dto.ActorDTO;
 import com.harun.actor.model.Actor;
+import com.harun.common.enums.StatusEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -35,8 +36,10 @@ public class ActorDALImpl implements ActorDAL {
             query.addCriteria(Criteria.where("surname").is(actorDTO.getSurname()));
         }
 
-        if (!ObjectUtils.isEmpty(actorDTO.getStatus())) {
-            query.addCriteria(Criteria.where("status").is(actorDTO.getStatus()).ne("DELETED"));
+        if (!ObjectUtils.isEmpty(actorDTO.getStatus()) && !actorDTO.getStatus().equals(StatusEnum.DELETED)) {
+            query.addCriteria(Criteria.where("status").is(actorDTO.getStatus()));
+        }else {
+            query.addCriteria(Criteria.where("status").ne("DELETED"));
         }
 
         query.skip((long) pageable.getPageNumber() * pageable.getPageSize());
