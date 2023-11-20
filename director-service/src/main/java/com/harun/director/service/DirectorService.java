@@ -31,10 +31,9 @@ public class DirectorService implements IDirectorService {
     }
 
     @Override
-    public DirectorDTO update(DirectorDTO directorDTO) {
-        Director incomingDirector = getDirectorById(directorDTO.getId());
-        directorRepository.save(mapper.updateDirectorFromDTO(directorDTO, incomingDirector));
-        return get(incomingDirector.getId());
+    public DirectorDTO update(DirectorDTO directorDTO, Long id) {
+        directorRepository.save(mapper.updateDirectorFromDTO(directorDTO, getDirectorById(id)));
+        return get(id);
     }
 
     @Override

@@ -29,8 +29,8 @@ public interface MovieRepository extends JpaRepository<Movie, Long>, JpaSpecific
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-            if (!ObjectUtils.isEmpty(movieDTO.getName())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("name"), movieDTO.getName());
+            if (!ObjectUtils.isEmpty(movieDTO.getTitle())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("title"), movieDTO.getTitle());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 

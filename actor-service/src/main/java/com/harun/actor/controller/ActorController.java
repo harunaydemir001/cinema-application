@@ -40,9 +40,10 @@ public class ActorController implements BaseController<ActorDTO, String> {
     @ApiResponses({
             @ApiResponse(code = 200, message = "HTTP Status OK", response = Response.class)
     })
-    @PutMapping
-    public ResponseEntity<Response> update(@ApiParam(value = "Actor DTO", required = true) @Valid @RequestBody ActorDTO actorDTO) {
-        return ResponseFactory.createResponse(actorService.update(actorDTO), HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Response> update(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") String id,
+                                           @ApiParam(value = "Actor DTO", required = true) @Valid @RequestBody ActorDTO actorDTO) {
+        return ResponseFactory.createResponse(actorService.update(actorDTO, id), HttpStatus.OK);
     }
 
     @Override

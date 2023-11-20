@@ -17,5 +17,5 @@ public interface MapperGenerator {
 
     @Mapping(target = "id", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateActorFromDTO(ActorDTO actorDTO, @MappingTarget Actor actor);
+    Actor updateActorFromDTO(ActorDTO actorDTO, @MappingTarget Actor actor);
 }

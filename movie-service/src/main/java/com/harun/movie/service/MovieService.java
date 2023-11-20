@@ -29,10 +29,9 @@ public class MovieService implements IMovieService {
     }
 
     @Override
-    public MovieDTO update(MovieDTO movieDTO) {
-        Movie incomingMovie = getMovieById(movieDTO.getId());
-        movieRepository.save(mapper.updateActorFromDTO(movieDTO, incomingMovie));
-        return get(incomingMovie.getId());
+    public MovieDTO update(MovieDTO movieDTO, Long id) {
+        movieRepository.save(mapper.updateActorFromDTO(movieDTO, getMovieById(id)));
+        return get(id);
     }
 
     @Override

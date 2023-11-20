@@ -31,11 +31,9 @@ public class ActorService implements IActorService {
     }
 
     @Override
-    public ActorDTO update(ActorDTO actorDTO) {
-        Actor incomingActor = getActorById(actorDTO.getId());
-        mapper.updateActorFromDTO(actorDTO, incomingActor);
-        actorRepository.save(incomingActor);
-        return get(incomingActor.getId());
+    public ActorDTO update(ActorDTO actorDTO, String id) {
+        actorRepository.save(mapper.updateActorFromDTO(actorDTO, getActorById(id)));
+        return get(id);
     }
 
     @Override

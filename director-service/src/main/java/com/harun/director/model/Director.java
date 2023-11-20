@@ -10,6 +10,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Positive;
@@ -25,14 +26,15 @@ import java.util.Date;
 public class Director extends BaseEntity {
     @NotNull
     private String name;
+    @NotNull
     private String surname;
     private String prize;
-    @Positive
+    @Positive(message = "Age must be a positive number")
+    @Max(120)
     private Integer age;
-    @Past
+    @Past(message = "Birth day must be in the past")
     @Column(name = "birth_day")
     private Date birthDay;
-    @NotNull
     @Column(name = "last_update")
     private Date lastUpdate;
 }

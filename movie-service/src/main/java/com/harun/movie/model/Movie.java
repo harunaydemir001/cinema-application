@@ -27,7 +27,8 @@ import java.util.Map;
 public class Movie extends BaseEntity {
 
     @NotNull
-    private String name;
+    private String title;
+
     @Positive
     @NotNull
     private Integer length;
@@ -37,6 +38,7 @@ public class Movie extends BaseEntity {
     @NotNull
     private Date releaseDate;
 
+    @Positive(message = "Age must be a positive number")
     @Column(name = "imdb_point")
     private Double imdbPoint;
 
@@ -46,7 +48,6 @@ public class Movie extends BaseEntity {
     @Column(name = "special_features")
     private Map<SpecialFeaturesEnum, String> specialFeatures;
 
-    @NotNull
     @Column(name = "last_update")
     private Date lastUpdate;
 
@@ -58,7 +59,6 @@ public class Movie extends BaseEntity {
 
     private String language;
 
-    @Positive
     @Column(name = "is_oscar")
     private Boolean isOscar;
 }

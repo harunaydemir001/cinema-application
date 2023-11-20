@@ -1,6 +1,6 @@
 package com.harun.movie.dto;
 
-import com.harun.common.enums.StatusEnum;
+import com.harun.common.base.BaseDTO;
 import com.harun.movie.enums.Genre;
 import com.harun.movie.enums.Quality;
 import com.harun.movie.enums.SpecialFeaturesEnum;
@@ -23,21 +23,20 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "Movie", description = "All details about the Movie Object")
-public class MovieDTO implements Serializable {
-    @ApiModelProperty(example = "1", notes = "Id of the Movie Object")
-    private Long id;
-    @ApiModelProperty(example = "name", notes = "Name of the Movie Object")
-    private String name;
-    @ApiModelProperty("Release Date of the Movie Object")
+public class MovieDTO extends BaseDTO<Long> implements Serializable {
+    @ApiModelProperty(example = "title", notes = "Name of the Movie Object", required = true)
+    private String title;
+    @ApiModelProperty(notes = "Release Date of the Movie Object", required = true)
     private Date releaseDate;
-    @ApiModelProperty(example = "120", notes = "Length of the Movie Object")
+    @ApiModelProperty(example = "120", notes = "Length of the Movie Object", allowableValues = "range[1, 120]", required = true)
     private Integer length;
-    @ApiModelProperty(example = "\"TRAILERS\": \"Movie Trailer\", \"SCENES\": \"Scenes\"", notes = "Special Features of the Movie Object")
+    @ApiModelProperty(example = "{\n" +
+            "        \"TRAILERS\": \"Movie Trailer\",\n" +
+            "        \"SCENES\": \"Scenes\"\n" +
+            "    }", notes = "Special Features of the Movie Object")
     private Map<SpecialFeaturesEnum, String> specialFeatures;
     @ApiModelProperty("Last Update of the Movie Object")
     private Date lastUpdate;
-    @ApiModelProperty(example = "ACTIVE", notes = "Status of the Movie Object")
-    private StatusEnum status;
     @ApiModelProperty(example = "COMEDY", notes = "Genre of the Movie Object")
     private Genre genre;
     @ApiModelProperty(example = "ENGLISH", notes = "Language of the Movie Object")

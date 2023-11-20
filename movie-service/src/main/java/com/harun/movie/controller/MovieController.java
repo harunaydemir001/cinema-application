@@ -39,9 +39,10 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     @ApiResponses({
             @ApiResponse(code = 200, message = "HTTP Status OK", response = Response.class)
     })
-    @PutMapping
-    public ResponseEntity<Response> update(@ApiParam(value = "Movie DTO", required = true) @Valid @RequestBody MovieDTO movieDTO) {
-        return ResponseFactory.createResponse(movieService.update(movieDTO), HttpStatus.OK);
+    @PutMapping("/{id}")
+    public ResponseEntity<Response> update(@ApiParam(value = "Movie Id", required = true) @PathVariable("id") Long id,
+                                           @ApiParam(value = "Movie DTO", required = true) @Valid @RequestBody MovieDTO movieDTO) {
+        return ResponseFactory.createResponse(movieService.update(movieDTO, id), HttpStatus.OK);
     }
 
     @Override
