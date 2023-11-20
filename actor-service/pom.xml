@@ -60,6 +60,8 @@
             <artifactId>spring-data-mongodb</artifactId>
         </dependency>
 
+        <!--End MongoDB -->
+
     </dependencies>
 
     <build>

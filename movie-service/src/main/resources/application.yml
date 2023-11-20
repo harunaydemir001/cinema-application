@@ -17,19 +17,9 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   application:
-    name: "movie"
+    name: "movie-service"
   profiles:
     active: "prod"
   config:
     import: "optional:configserver:http://localhost:8070/"
-
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8071/eureka/
-    fetch-registry: true
-    register-with-eureka: true
-
 

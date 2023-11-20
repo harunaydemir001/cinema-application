@@ -9,10 +9,13 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   application:
-    name: "actor"
+    name: "actor-service"
   profiles:
     active: "prod"
   config:
     import: "optional:configserver:http://localhost:8070/"
+  devtools:
+    livereload:
+      port: 35730
 
 

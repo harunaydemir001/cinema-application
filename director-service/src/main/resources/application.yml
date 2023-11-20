@@ -13,11 +13,14 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
+  devtools:
+    livereload:
+      port: 35731
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
   application:
-    name: "director"
+    name: "director-service"
   profiles:
     active: "prod"
   config:
