@@ -1,6 +1,6 @@
 package com.harun.actor.controller;
 
-import com.harun.actor.dto.ActorDTO;
+import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.actor.service.ActorService;
 import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
 
 
 @Api(
