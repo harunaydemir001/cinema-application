@@ -1,4 +1,4 @@
-package com.harun.actorserviceapi.configuration;
+package com.harun.common.configuration;
 
 
 import feign.Logger;

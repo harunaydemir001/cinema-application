@@ -1,14 +1,12 @@
 package com.harun.actorserviceapi.client;
 
-import com.harun.actorserviceapi.configuration.FeignClientConfiguration;
+import com.harun.common.configuration.FeignClientConfiguration;
 import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.common.model.Response;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @FeignClient(name = "actor-service", url = "http://localhost:8081/actor", configuration = FeignClientConfiguration.class, fallback = ActorServiceClientFallback.class, primary = false)
 public interface ActorServiceClient {
