@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "actor-service", url = "http://localhost:8081/actor", configuration = FeignClientConfiguration.class, fallback = ActorServiceClientFallback.class, primary = false)
+@FeignClient(name = "actor-service", url = "http://localhost:8082/actor", configuration = FeignClientConfiguration.class, fallback = ActorServiceClientFallback.class, primary = false)
 public interface ActorServiceClient {
 
     @PostMapping

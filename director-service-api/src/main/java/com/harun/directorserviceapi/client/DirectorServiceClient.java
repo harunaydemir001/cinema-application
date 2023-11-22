@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "director-service", url = "http://localhost:8082/director", configuration = FeignClientConfiguration.class, fallback = DirectorServiceClientFallback.class, primary = false)
+@FeignClient(name = "director-service", url = "http://localhost:8084/director", configuration = FeignClientConfiguration.class, fallback = DirectorServiceClientFallback.class, primary = false)
 public interface DirectorServiceClient {
 
     @PostMapping
@@ -16,7 +16,6 @@ public interface DirectorServiceClient {
 
     @PutMapping("/{id}")
     ResponseEntity<Response> update(@PathVariable("id") String id, @RequestBody DirectorDTO directorDTO);
-
     @DeleteMapping("/{id}")
     ResponseEntity<Response> delete(@PathVariable("id") String id);
 
