@@ -1,6 +1,6 @@
 package com.harun.actor.mapper;
 
-import com.harun.actor.dto.ActorDTO;
+import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.actor.model.Actor;
 import org.mapstruct.*;
 

@@ -17,6 +17,7 @@ import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
 
 @Entity
 @Data
@@ -28,6 +29,7 @@ import java.util.Map;
 public class Movie extends BaseEntity implements Serializable {
 
     @NotNull
+    @Column(unique = true)
     private String title;
 
     @Positive
@@ -52,8 +54,10 @@ public class Movie extends BaseEntity implements Serializable {
     @Column(name = "last_update")
     private Date lastUpdate;
 
-    @Enumerated
-    private Genre genre;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "genre_set", joinColumns = @JoinColumn(name = "genre_id"))
+    @MapKeyEnumerated(EnumType.STRING)
+    private Set<Genre> genre;
 
     @Enumerated
     private Quality quality;
@@ -62,4 +66,11 @@ public class Movie extends BaseEntity implements Serializable {
 
     @Column(name = "is_oscar")
     private Boolean isOscar;
+
+    @NotNull
+    @Column(name = "actor_name")
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "actor_names_set", joinColumns = @JoinColumn(name = "actor_names_id"))
+    @MapKeyEnumerated(EnumType.STRING)
+    private Set<String> actorNames;
 }

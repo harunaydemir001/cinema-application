@@ -1,7 +1,7 @@
 package com.harun.actor.controller;
 
-import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.actor.service.ActorService;
+import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
 import com.harun.common.model.Response;
@@ -12,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-
 
 
 @Api(
@@ -83,5 +81,11 @@ public class ActorController implements BaseController<ActorDTO, String> {
     public ResponseEntity<Response> filter(Pageable pageable,
                                            @ApiParam(value = "Actor DTO") @RequestBody() ActorDTO actorDTO) {
         return ResponseFactory.createResponse(actorService.filter(pageable, actorDTO), HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Get All Actors By Movie")
+    @GetMapping("/by-movie")
+    public ResponseEntity<Response> getAllByMovie(@ApiParam(value = "Movie Title") @RequestParam String movieTitle) {
+        return ResponseFactory.createResponse(actorService.getAllByMovie(movieTitle), HttpStatus.OK);
     }
 }

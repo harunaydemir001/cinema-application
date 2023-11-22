@@ -82,4 +82,9 @@ public class MovieController implements BaseController<MovieDTO, Long> {
         return ResponseFactory.createResponse(movieService.filter(pageable, movieDTO), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Combine Film And Actors")
+    @GetMapping("/combine")
+    public ResponseEntity<Response> combineFilmAndActors(@ApiParam(value = "Movie Title") @RequestParam() String title) {
+        return ResponseFactory.createResponse(movieService.combineFilmAndActors(title), HttpStatus.OK);
+    }
 }

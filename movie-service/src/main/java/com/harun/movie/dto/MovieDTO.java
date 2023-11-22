@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * DTO for {@link Movie}
@@ -37,8 +38,11 @@ public class MovieDTO extends BaseDTO<Long> implements Serializable {
     private Map<SpecialFeaturesEnum, String> specialFeatures;
     @ApiModelProperty("Last Update of the Movie Object")
     private Date lastUpdate;
-    @ApiModelProperty(example = "COMEDY", notes = "Genre of the Movie Object")
-    private Genre genre;
+    @ApiModelProperty(example = "[\n" +
+            "    \"ACTION\", \n" +
+            "    \"SANCTIFICATION\"\n" +
+            "  ]", notes = "Genre of the Movie Object")
+    private Set<Genre> genre;
     @ApiModelProperty(example = "ENGLISH", notes = "Language of the Movie Object")
     private String language;
     @ApiModelProperty(example = "7.0", notes = "IMDB Point of the Movie Object")
@@ -47,4 +51,10 @@ public class MovieDTO extends BaseDTO<Long> implements Serializable {
     private Quality quality;
     @ApiModelProperty(example = "True", notes = "Whether the movie won an Oscar or not")
     private Boolean isOscar;
+    @ApiModelProperty(example = "[\n" +
+            "    \"Leonardo DiCaprio\", \n" +
+            "    \"Tom Hardy\"\n" +
+            "  ]",
+            notes = "Actor Names Playing in the Movie")
+    private Set<String> actorNames;
 }

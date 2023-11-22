@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Document(collection = "actor")
 @Data
@@ -28,7 +29,7 @@ public class Actor implements Serializable {
     private String surname;
     @NotNull
     private Date updateDate;
-
+    private Set<String> movieNames;
     private StatusEnum status = StatusEnum.ACTIVE;
 
     public void setId(String id) {

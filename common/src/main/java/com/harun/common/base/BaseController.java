@@ -4,13 +4,13 @@ package com.harun.common.base;
 import com.harun.common.model.Response;
 import org.springframework.http.ResponseEntity;
 
-public interface BaseController<EntityDTO extends BaseDTO<?>, Id> {
+public interface BaseController<E extends BaseDTO<?>, I> {
 
-    ResponseEntity<Response> save(EntityDTO entityDTO);
+    ResponseEntity<Response> save(E entityDTO);
 
-    ResponseEntity<Response> update(Id id, EntityDTO entityDTO);
+    ResponseEntity<Response> update(I id, E entityDTO);
 
-    ResponseEntity<Response> get(Id id);
+    ResponseEntity<Response> get(I id);
 
-    ResponseEntity<Response> delete(Id id);
+    ResponseEntity<Response> delete(I id);
 }

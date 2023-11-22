@@ -1,11 +1,11 @@
 package com.harun.actor.service;
 
-import com.harun.actor.dto.ActorDTO;
 import com.harun.actor.mapper.MapperGenerator;
 import com.harun.actor.mapper.MapperGeneratorSingleton;
 import com.harun.actor.model.Actor;
 import com.harun.actor.repository.ActorDALImpl;
 import com.harun.actor.repository.ActorRepository;
+import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.common.enums.StatusEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -61,6 +62,13 @@ public class ActorService implements IActorService {
         Page<Actor> actorPage = actorRepository.findAll(pageable);
         List<ActorDTO> actorDTOList = mapper.actorToActorDTO(actorPage.getContent());
         return new PageImpl<>(actorDTOList, pageable, actorPage.getTotalElements());
+    }
+
+    @Override
+    public List<ActorDTO> getAllByMovie(String movieTitle) {
+        return getAll(Pageable.unpaged()).getContent().stream()
+                .filter(actor -> actor.getMovieNames().contains(movieTitle))
+                .collect(Collectors.toList());
     }
 
     private Actor getActorById(String id) {

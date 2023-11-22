@@ -1,6 +1,6 @@
 package com.harun.actor.repository;
 
-import com.harun.actor.dto.ActorDTO;
+import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.actor.model.Actor;
 import com.harun.common.enums.StatusEnum;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +34,10 @@ public class ActorDALImpl implements ActorDAL {
 
         if (!ObjectUtils.isEmpty(actorDTO.getSurname())) {
             query.addCriteria(Criteria.where("surname").is(actorDTO.getSurname()));
+        }
+
+        if (!ObjectUtils.isEmpty(actorDTO.getMovieNames())) {
+            query.addCriteria(Criteria.where("movieNames").is(actorDTO.getMovieNames()));
         }
 
         if (!ObjectUtils.isEmpty(actorDTO.getStatus()) && !actorDTO.getStatus().equals(StatusEnum.DELETED)) {

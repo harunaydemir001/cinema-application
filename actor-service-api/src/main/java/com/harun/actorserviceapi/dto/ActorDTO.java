@@ -1,6 +1,5 @@
-package com.harun.actor.dto;
+package com.harun.actorserviceapi.dto;
 
-import com.harun.actor.model.Actor;
 import com.harun.common.base.BaseDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -10,10 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
-
-/**
- * DTO for {@link Actor}
- */
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -27,4 +23,9 @@ public class ActorDTO extends BaseDTO<String> implements Serializable {
     private String surname;
     @ApiModelProperty(notes = "Update Date of the Actor")
     private Date updateDate;
+    @ApiModelProperty(example = "[\n" +
+            "    \"Total Recall\", \n" +
+            "    \"The Sorcerer's Apprentice\"\n" +
+            "  ]", notes = "Movie Names Starring the Actors")
+    private Set<String> movieNames;
 }

@@ -1,22 +1,16 @@
 spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: actor
-      authentication-database: admin
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
   application:
-    name: "actor-service"
+    name: "actor-service-api"
   profiles:
     active: "prod"
   config:
     import: "optional:configserver:http://localhost:8070/"
   devtools:
     livereload:
-      port: 35730
+      port: 35733
 
 feign:
   client:
@@ -25,4 +19,3 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
-

@@ -1,12 +1,12 @@
 package com.harun.common.base;
 
-public interface BaseService<EntityDTO extends BaseDTO<?>, Id> {
+public interface BaseService<E extends BaseDTO<?>, I> {
 
-    EntityDTO save(EntityDTO entityDTO);
+    E save(E entityDTO);
 
-    EntityDTO update(EntityDTO entityDTO, Id id);
+    E update(E entityDTO, I id);
 
-    EntityDTO get(Id id);
+    E get(I id);
 
-    void delete(Id id);
+    void delete(I id);
 }

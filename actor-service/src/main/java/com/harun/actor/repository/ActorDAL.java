@@ -1,6 +1,6 @@
 package com.harun.actor.repository;
 
-import com.harun.actor.dto.ActorDTO;
+import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.actor.model.Actor;
 import org.springframework.data.domain.Pageable;
 

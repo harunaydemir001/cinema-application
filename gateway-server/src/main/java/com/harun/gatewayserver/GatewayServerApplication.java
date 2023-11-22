@@ -21,17 +21,17 @@ public class GatewayServerApplication {
     public RouteLocator cinemaRouteConfig(RouteLocatorBuilder routeLocatorBuilder) {
         return routeLocatorBuilder.routes()
                 .route(p -> p
-                        .path("/cinema/movie-service/***")
-                        .filters(f -> f.rewritePath("/cinema/movie-service/(?<segment>.*)", RouterConstant.SEGMENT)
+                        .path("/movie-service/api/***")
+                        .filters(f -> f.rewritePath("/movie-service/api/(?<segment>.*)", RouterConstant.SEGMENT)
                                 .addResponseHeader(RouterConstant.X_RESPONSE_TIME, LocalDateTime.now().toString()))
                         .uri("lb://MOVIE-SERVICE"))
                 .route(p -> p
-                        .path("/cinema/director-service/***")
+                        .path("/director-service/api/***")
                         .filters(f -> f.rewritePath("/cinema/director-service/(?<segment>.*)", RouterConstant.SEGMENT)
                                 .addResponseHeader(RouterConstant.X_RESPONSE_TIME, LocalDateTime.now().toString()))
                         .uri("lb://DIRECTOR-SERVICE"))
                 .route(p -> p
-                        .path("/cinema/actor-service/***")
+                        .path("/actor-service/api/***")
                         .filters(f -> f.rewritePath("/cinema/actor-service/(?<segment>.*)", RouterConstant.SEGMENT)
                                 .addResponseHeader(RouterConstant.X_RESPONSE_TIME, LocalDateTime.now().toString()))
                         .uri("lb://ACTOR-SERVICE"))
