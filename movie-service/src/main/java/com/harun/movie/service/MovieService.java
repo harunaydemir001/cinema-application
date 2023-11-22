@@ -85,7 +85,6 @@ public class MovieService implements IMovieService {
 
     @Override
     public Map<String, Page> getAllData() {
-
         Page<ActorDTO> allActors = actorServiceClientService.getAll(Pageable.unpaged());
         Page<DirectorDTO> allDirectors = directorServiceClientService.getAll(Pageable.unpaged());
         Page<MovieDTO> allMovies = getAll(Pageable.unpaged());
