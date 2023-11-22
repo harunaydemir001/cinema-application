@@ -21,18 +21,18 @@ public class GatewayServerApplication {
     public RouteLocator cinemaRouteConfig(RouteLocatorBuilder routeLocatorBuilder) {
         return routeLocatorBuilder.routes()
                 .route(p -> p
-                        .path("/movie-service/api/***")
-                        .filters(f -> f.rewritePath("/movie-service/api/(?<segment>.*)", RouterConstant.SEGMENT)
+                        .path("/api/v1/movie-service/***")
+                        .filters(f -> f.rewritePath("/api/v1/movie-service/(?<segment>.*)", RouterConstant.SEGMENT)
                                 .addResponseHeader(RouterConstant.X_RESPONSE_TIME, LocalDateTime.now().toString()))
                         .uri("lb://MOVIE-SERVICE"))
                 .route(p -> p
-                        .path("/director-service/api/***")
-                        .filters(f -> f.rewritePath("/cinema/director-service/(?<segment>.*)", RouterConstant.SEGMENT)
+                        .path("api/v1/director-service/***")
+                        .filters(f -> f.rewritePath("/api/v1/director-service/(?<segment>.*)", RouterConstant.SEGMENT)
                                 .addResponseHeader(RouterConstant.X_RESPONSE_TIME, LocalDateTime.now().toString()))
                         .uri("lb://DIRECTOR-SERVICE"))
                 .route(p -> p
-                        .path("/actor-service/api/***")
-                        .filters(f -> f.rewritePath("/cinema/actor-service/(?<segment>.*)", RouterConstant.SEGMENT)
+                        .path("/api/v1/actor-service/***")
+                        .filters(f -> f.rewritePath("/api/v1/actor-service/(?<segment>.*)", RouterConstant.SEGMENT)
                                 .addResponseHeader(RouterConstant.X_RESPONSE_TIME, LocalDateTime.now().toString()))
                         .uri("lb://ACTOR-SERVICE"))
                 .build();
