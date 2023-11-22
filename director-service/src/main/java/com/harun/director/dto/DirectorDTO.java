@@ -5,6 +5,7 @@ import com.harun.director.model.Director;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @ApiModel(value = "Director", description = "All details about the Director")
 public class DirectorDTO extends BaseDTO<Long> implements Serializable {
     @ApiModelProperty(example = "name", notes = "Name of the Director", required = true)

@@ -8,6 +8,7 @@ import com.harun.movie.model.Movie;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,6 +24,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder(setterPrefix = "with")
 @ApiModel(value = "Movie", description = "All details about the Movie Object")
 public class MovieDTO extends BaseDTO<Long> implements Serializable {
     @ApiModelProperty(example = "title", notes = "Name of the Movie Object", required = true)

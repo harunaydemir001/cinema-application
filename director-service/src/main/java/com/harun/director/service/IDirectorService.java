@@ -5,6 +5,10 @@ import com.harun.director.dto.DirectorDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+/**
+ * Access Layer for {@link DirectorService}
+ */
+
 public interface IDirectorService extends BaseService<DirectorDTO, Long> {
     Page<DirectorDTO> filter(Pageable pageable, DirectorDTO directorDTO);
 

@@ -27,5 +27,5 @@ public class ActorDTO extends BaseDTO<String> implements Serializable {
             "    \"Total Recall\", \n" +
             "    \"The Sorcerer's Apprentice\"\n" +
             "  ]", notes = "Movie Names Starring the Actors")
-    private Set<String> movieNames;
+    private Set<String> movieTitles;
 }

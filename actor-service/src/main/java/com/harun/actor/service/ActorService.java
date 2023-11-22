@@ -67,7 +67,7 @@ public class ActorService implements IActorService {
     @Override
     public List<ActorDTO> getAllByMovie(String movieTitle) {
         return getAll(Pageable.unpaged()).getContent().stream()
-                .filter(actor -> actor.getMovieNames().contains(movieTitle))
+                .filter(actor -> actor.getMovieTitles().contains(movieTitle))
                 .collect(Collectors.toList());
     }
 

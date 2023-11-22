@@ -69,14 +69,15 @@ public class MovieService implements IMovieService {
 
     @Override
     public MovieAndActorDTO combineFilmAndActors(String title) {
-        MovieDTO movieDTO = new MovieDTO();
-        movieDTO.setTitle(title);
         List<ActorDTO> actorDTOList = actorServiceClientService.getAllByMovie(title);
-        MovieDTO dto = JsonUtil.convertValue(filter(Pageable.unpaged(), movieDTO).getContent().get(0), MovieDTO.class);
-        MovieAndActorDTO movieAndActorDTO = new MovieAndActorDTO();
-        movieAndActorDTO.setActorDTOList(actorDTOList);
-        movieAndActorDTO.setMovieDTO(dto);
-        return movieAndActorDTO;
+        MovieDTO dto = JsonUtil.convertValue(
+                filter(
+                        Pageable.unpaged(),
+                        MovieDTO.builder().withTitle(title).build()).getContent().get(0), MovieDTO.class);
+        return MovieAndActorDTO.builder()
+                .withActorDTOList(actorDTOList)
+                .withMovieDTO(dto)
+                .build();
     }
 
     private Movie getMovieById(Long id) {

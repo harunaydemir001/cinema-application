@@ -10,6 +10,11 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
+/**
+ * Access Layer for {@link ActorService}
+ */
+
+
 public interface IActorService extends BaseService<ActorDTO, String> {
 
     Page<ActorDTO> filter(Pageable pageable, ActorDTO actorDTO);

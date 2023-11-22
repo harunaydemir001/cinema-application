@@ -1,6 +1,6 @@
 package com.harun.actor.controller;
 
-import com.harun.actor.service.ActorService;
+import com.harun.actor.service.IActorService;
 import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class ActorController implements BaseController<ActorDTO, String> {
 
-    private final ActorService actorService;
+    private final IActorService iActorService;
 
     @Override
     @ApiOperation(value = "Save Actor")
@@ -32,7 +32,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @PostMapping
     public ResponseEntity<Response> save(@ApiParam(value = "Actor DTO", required = true) @RequestBody ActorDTO actorDTO) {
-        return ResponseFactory.createResponse(actorService.save(actorDTO), HttpStatus.CREATED);
+        return ResponseFactory.createResponse(iActorService.save(actorDTO), HttpStatus.CREATED);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     @PutMapping("/{id}")
     public ResponseEntity<Response> update(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") String id,
                                            @ApiParam(value = "Actor DTO", required = true) @RequestBody ActorDTO actorDTO) {
-        return ResponseFactory.createResponse(actorService.update(actorDTO, id), HttpStatus.OK);
+        return ResponseFactory.createResponse(iActorService.update(actorDTO, id), HttpStatus.OK);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> delete(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") String id) {
-        actorService.delete(id);
+        iActorService.delete(id);
         return ResponseFactory.createSuccessResponse();
     }
 
@@ -64,7 +64,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @GetMapping("/{id}")
     public ResponseEntity<Response> get(@ApiParam(value = "Actor Id", required = true) @PathVariable("id") String id) {
-        return ResponseFactory.createResponse(actorService.get(id), HttpStatus.OK);
+        return ResponseFactory.createResponse(iActorService.get(id), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get All Actors")
@@ -73,19 +73,19 @@ public class ActorController implements BaseController<ActorDTO, String> {
     })
     @GetMapping()
     public ResponseEntity<Response> getAll(Pageable pageable) {
-        return ResponseFactory.createResponse(actorService.getAll(pageable), HttpStatus.OK);
+        return ResponseFactory.createResponse(iActorService.getAll(pageable), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Filter Actors", notes = "Filtered Actor By Selection Field and Return Page")
     @PostMapping("/filter")
     public ResponseEntity<Response> filter(Pageable pageable,
                                            @ApiParam(value = "Actor DTO") @RequestBody() ActorDTO actorDTO) {
-        return ResponseFactory.createResponse(actorService.filter(pageable, actorDTO), HttpStatus.OK);
+        return ResponseFactory.createResponse(iActorService.filter(pageable, actorDTO), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Get All Actors By Movie")
     @GetMapping("/by-movie")
     public ResponseEntity<Response> getAllByMovie(@ApiParam(value = "Movie Title") @RequestParam String movieTitle) {
-        return ResponseFactory.createResponse(actorService.getAllByMovie(movieTitle), HttpStatus.OK);
+        return ResponseFactory.createResponse(iActorService.getAllByMovie(movieTitle), HttpStatus.OK);
     }
 }

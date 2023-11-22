@@ -29,7 +29,7 @@ public class Actor implements Serializable {
     private String surname;
     @NotNull
     private Date updateDate;
-    private Set<String> movieNames;
+    private Set<String> movieTitles;
     private StatusEnum status = StatusEnum.ACTIVE;
 
     public void setId(String id) {
