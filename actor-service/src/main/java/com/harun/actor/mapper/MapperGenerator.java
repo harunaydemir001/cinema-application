@@ -6,7 +6,7 @@ import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper
+@Mapper(componentModel = "spring", builder = @Builder(disableBuilder = true))
 public interface MapperGenerator {
 
     Actor actorDTOToActor(ActorDTO actorDTO);

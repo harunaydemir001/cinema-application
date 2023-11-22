@@ -3,6 +3,7 @@ package com.harun.actor.model;
 import com.harun.common.enums.StatusEnum;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -16,6 +17,7 @@ import java.util.Set;
 
 @Document(collection = "actor")
 @Data
+@Builder(setterPrefix = "with")
 @NoArgsConstructor
 @AllArgsConstructor
 @ApiModel(value = "Actor", description = "All details about the Actor Object")

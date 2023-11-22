@@ -32,4 +32,7 @@ public interface MovieServiceClient {
 
     @GetMapping("/combine-actors")
     ResponseEntity<Response> combineFilmAndActors(@ApiParam(value = "Movie Title") @RequestParam() String title);
+
+    @GetMapping("/all-data")
+    ResponseEntity<Response> getAllData();
 }

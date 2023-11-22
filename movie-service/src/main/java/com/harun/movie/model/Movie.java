@@ -6,6 +6,7 @@ import com.harun.movieserviceapi.enums.Quality;
 import com.harun.movieserviceapi.enums.SpecialFeaturesEnum;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
@@ -21,8 +22,9 @@ import java.util.Set;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Builder(setterPrefix = "with")
+@NoArgsConstructor()
+@AllArgsConstructor()
 @Table(name = "movie")
 @Where(clause = "status != 'DELETED'")
 @ApiModel(value = "Movie", description = "All details about the Movie Object")

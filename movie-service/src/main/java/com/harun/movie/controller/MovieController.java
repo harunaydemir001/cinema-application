@@ -87,4 +87,10 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     public ResponseEntity<Response> combineFilmAndActors(@ApiParam(value = "Movie Title") @RequestParam() String title) {
         return ResponseFactory.createResponse(iMovieService.combineFilmAndActors(title), HttpStatus.OK);
     }
+
+    @ApiOperation(value = "Get All Movies, Actors and Directors")
+    @GetMapping("/all-data")
+    public ResponseEntity<Response> getAllData() {
+        return ResponseFactory.createResponse(iMovieService.getAllData(), HttpStatus.OK);
+    }
 }

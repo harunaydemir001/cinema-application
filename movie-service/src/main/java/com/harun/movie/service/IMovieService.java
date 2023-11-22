@@ -6,6 +6,8 @@ import com.harun.movieserviceapi.dto.MovieDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Map;
+
 /**
  * Access Layer for {@link MovieService}
  */
@@ -17,4 +19,6 @@ public interface IMovieService extends BaseService<MovieDTO, Long> {
     Page<MovieDTO> getAll(Pageable pageable);
 
     MovieAndActorDTO combineFilmAndActors(String title);
+
+    Map<String, Page> getAllData();
 }

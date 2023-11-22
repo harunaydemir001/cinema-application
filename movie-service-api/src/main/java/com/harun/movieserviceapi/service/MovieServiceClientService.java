@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -60,5 +61,10 @@ public class MovieServiceClientService {
     public MovieAndActorDTO combineFilmAndActors(String title) {
         ResponseEntity<Response> response = movieServiceClient.combineFilmAndActors(title);
         return JsonUtil.convertValue(Objects.requireNonNull(response.getBody()).getResult(), MovieAndActorDTO.class);
+    }
+
+    public Map<String, Page> getAllData() {
+        ResponseEntity<Response> response = movieServiceClient.getAllData();
+        return JsonUtil.convertValue(Objects.requireNonNull(response.getBody()).getResult(), Map.class);
     }
 }

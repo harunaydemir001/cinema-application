@@ -10,6 +10,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Map;
 
 @Component
 public class MovieServiceClientFallback implements MovieServiceClient {
@@ -49,6 +52,11 @@ public class MovieServiceClientFallback implements MovieServiceClient {
     public ResponseEntity<Response> combineFilmAndActors(String title) {
         MovieAndActorDTO movieAndActorDTO = new MovieAndActorDTO();
         return ResponseFactory.createResponse(movieAndActorDTO, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/all-data")
+    public ResponseEntity<Response> getAllData() {
+        return ResponseFactory.createResponse(Map.of(), HttpStatus.NOT_FOUND);
     }
 
 }

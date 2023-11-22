@@ -8,6 +8,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication(scanBasePackages = {
         "com.harun.actorserviceapi",
+        "com.harun.directorserviceapi",
         "com.harun.movie"
 })
 @EnableSwagger2

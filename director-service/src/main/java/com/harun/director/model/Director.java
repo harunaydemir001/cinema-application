@@ -3,6 +3,7 @@ package com.harun.director.model;
 import com.harun.common.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
@@ -19,6 +20,7 @@ import java.util.Date;
 
 @Entity
 @Data
+@Builder(setterPrefix = "with")
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "director")
