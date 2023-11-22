@@ -1,9 +1,9 @@
 package com.harun.movie.model;
 
 import com.harun.common.base.BaseEntity;
-import com.harun.movie.enums.Genre;
-import com.harun.movie.enums.Quality;
-import com.harun.movie.enums.SpecialFeaturesEnum;
+import com.harun.movieserviceapi.enums.Genre;
+import com.harun.movieserviceapi.enums.Quality;
+import com.harun.movieserviceapi.enums.SpecialFeaturesEnum;
 import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

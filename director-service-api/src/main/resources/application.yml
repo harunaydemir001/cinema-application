@@ -1,0 +1,21 @@
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: "director-service-api"
+  profiles:
+    active: "prod"
+  config:
+    import: "optional:configserver:http://localhost:8070/"
+  devtools:
+    livereload:
+      port: 35734
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic

@@ -3,7 +3,7 @@ package com.harun.director.controller;
 import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
 import com.harun.common.model.Response;
-import com.harun.director.dto.DirectorDTO;
+import com.harun.directorserviceapi.dto.DirectorDTO;
 import com.harun.director.service.IDirectorService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;

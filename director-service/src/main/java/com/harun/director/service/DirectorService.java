@@ -2,7 +2,7 @@ package com.harun.director.service;
 
 
 import com.harun.common.enums.StatusEnum;
-import com.harun.director.dto.DirectorDTO;
+import com.harun.directorserviceapi.dto.DirectorDTO;
 import com.harun.director.mapper.MapperGenerator;
 import com.harun.director.mapper.MapperGeneratorSingleton;
 import com.harun.director.mapper.PageMapper;

@@ -1,6 +1,6 @@
 package com.harun.director.mapper;
 
-import com.harun.director.dto.DirectorDTO;
+import com.harun.directorserviceapi.dto.DirectorDTO;
 import com.harun.director.model.Director;
 import org.mapstruct.*;
 

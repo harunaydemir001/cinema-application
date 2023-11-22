@@ -19,8 +19,8 @@ import java.util.Set;
 public class ActorDTO extends BaseDTO<String> implements Serializable {
     @ApiModelProperty(example = "name", notes = "Name of the Actor")
     private String name;
-    @ApiModelProperty(example = "surname", notes = "Surname of the Actor")
-    private String surname;
+    @ApiModelProperty(example = "lastname", notes = "Lastname of the Actor")
+    private String lastName;
     @ApiModelProperty(notes = "Update Date of the Actor")
     private Date updateDate;
     @ApiModelProperty(example = "[\n" +

@@ -1,6 +1,6 @@
 package com.harun.movie.repository;
 
-import com.harun.movie.dto.MovieDTO;
+import com.harun.movieserviceapi.dto.MovieDTO;
 import com.harun.movie.model.Movie;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

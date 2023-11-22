@@ -32,8 +32,8 @@ public class ActorDALImpl implements ActorDAL {
             query.addCriteria(Criteria.where("name").is(actorDTO.getName()));
         }
 
-        if (!ObjectUtils.isEmpty(actorDTO.getSurname())) {
-            query.addCriteria(Criteria.where("surname").is(actorDTO.getSurname()));
+        if (!ObjectUtils.isEmpty(actorDTO.getLastName())) {
+            query.addCriteria(Criteria.where("lastName").is(actorDTO.getLastName()));
         }
 
         if (!ObjectUtils.isEmpty(actorDTO.getMovieTitles())) {

@@ -26,7 +26,7 @@ public class Actor implements Serializable {
     @NotNull
     private String name;
     @NotNull
-    private String surname;
+    private String lastName;
     @NotNull
     private Date updateDate;
     private Set<String> movieTitles;

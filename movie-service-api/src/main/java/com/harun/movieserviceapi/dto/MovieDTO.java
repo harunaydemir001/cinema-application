@@ -1,10 +1,9 @@
-package com.harun.movie.dto;
+package com.harun.movieserviceapi.dto;
 
 import com.harun.common.base.BaseDTO;
-import com.harun.movie.enums.Genre;
-import com.harun.movie.enums.Quality;
-import com.harun.movie.enums.SpecialFeaturesEnum;
-import com.harun.movie.model.Movie;
+import com.harun.movieserviceapi.enums.Genre;
+import com.harun.movieserviceapi.enums.Quality;
+import com.harun.movieserviceapi.enums.SpecialFeaturesEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -17,9 +16,6 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * DTO for {@link Movie}
- */
 
 @Data
 @NoArgsConstructor

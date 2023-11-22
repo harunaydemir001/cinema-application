@@ -3,7 +3,7 @@ package com.harun.movie.controller;
 import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
 import com.harun.common.model.Response;
-import com.harun.movie.dto.MovieDTO;
+import com.harun.movieserviceapi.dto.MovieDTO;
 import com.harun.movie.service.IMovieService;
 import io.swagger.annotations.*;
 import lombok.RequiredArgsConstructor;
@@ -83,7 +83,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     }
 
     @ApiOperation(value = "Combine Film And Actors")
-    @GetMapping("/combine")
+    @GetMapping("/combine-actors")
     public ResponseEntity<Response> combineFilmAndActors(@ApiParam(value = "Movie Title") @RequestParam() String title) {
         return ResponseFactory.createResponse(iMovieService.combineFilmAndActors(title), HttpStatus.OK);
     }

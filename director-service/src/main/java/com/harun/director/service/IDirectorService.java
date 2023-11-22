@@ -1,7 +1,7 @@
 package com.harun.director.service;
 
 import com.harun.common.base.BaseService;
-import com.harun.director.dto.DirectorDTO;
+import com.harun.directorserviceapi.dto.DirectorDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

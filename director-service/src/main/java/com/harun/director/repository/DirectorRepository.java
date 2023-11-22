@@ -1,6 +1,6 @@
 package com.harun.director.repository;
 
-import com.harun.director.dto.DirectorDTO;
+import com.harun.directorserviceapi.dto.DirectorDTO;
 import com.harun.director.model.Director;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,8 +33,8 @@ public interface DirectorRepository extends JpaRepository<Director, Long>, JpaSp
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-            if (!ObjectUtils.isEmpty(directorDTO.getSurname())) {
-                Predicate predicate = criteriaBuilder.equal(root.get("surname"), directorDTO.getSurname());
+            if (!ObjectUtils.isEmpty(directorDTO.getLastName())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("lastName"), directorDTO.getLastName());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 

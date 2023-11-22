@@ -28,7 +28,7 @@ public class Director extends BaseEntity implements Serializable {
     @NotNull
     private String name;
     @NotNull
-    private String surname;
+    private String lastName;
     private String prize;
     @Positive(message = "Age must be a positive number")
     @Max(120)

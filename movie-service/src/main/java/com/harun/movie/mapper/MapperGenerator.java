@@ -1,6 +1,6 @@
 package com.harun.movie.mapper;
 
-import com.harun.movie.dto.MovieDTO;
+import com.harun.movieserviceapi.dto.MovieDTO;
 import com.harun.movie.model.Movie;
 import org.mapstruct.*;
 
