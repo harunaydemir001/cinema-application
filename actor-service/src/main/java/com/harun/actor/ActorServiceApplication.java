@@ -6,7 +6,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {
+        "com.harun.actorserviceapi",
+        "com.harun.actor"
+})
 @EnableMongoRepositories(basePackages = "com.harun.actor.repository")
 @EnableSwagger2
 @EnableFeignClients

@@ -23,7 +23,7 @@ import java.util.Objects;
 public class DirectorServiceClientService {
     private final DirectorServiceClient directorServiceClient;
 
-    public DirectorServiceClientService(@Qualifier("") DirectorServiceClient directorServiceClient) {
+    public DirectorServiceClientService(@Qualifier("com.harun.directorserviceapi.client.DirectorServiceClient") DirectorServiceClient directorServiceClient) {
         this.directorServiceClient = directorServiceClient;
     }
 

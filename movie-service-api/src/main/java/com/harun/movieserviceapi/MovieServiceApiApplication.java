@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableFeignClients(basePackages = {"com.harun.movieserviceapi"})
+@EnableFeignClients(basePackages = {"com.harun.movieserviceapi.client"})
 public class MovieServiceApiApplication {
 
     public static void main(String[] args) {
