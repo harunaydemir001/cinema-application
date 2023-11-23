@@ -15,18 +15,24 @@ import com.harun.movie.repository.MovieRepository;
 import com.harun.movieserviceapi.dto.MovieAndActorDTO;
 import com.harun.movieserviceapi.dto.MovieDTO;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class MovieService implements IMovieService {
+    private static final Logger logger = LoggerFactory.getLogger(MovieService.class);
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
+
     private final MovieRepository movieRepository;
     private final ActorServiceClientService actorServiceClientService;
     private final DirectorServiceClientService directorServiceClientService;
@@ -35,12 +41,14 @@ public class MovieService implements IMovieService {
     public MovieDTO save(MovieDTO movieDTO) {
         Movie movie = mapper.movieDTOToMovie(movieDTO);
         movieRepository.save(movie);
+        logger("save", movie.getId());
         return get(movie.getId());
     }
 
     @Override
     public MovieDTO update(MovieDTO movieDTO, Long id) {
         movieRepository.save(mapper.updateActorFromDTO(movieDTO, getMovieById(id)));
+        logger("update", id);
         return get(id);
     }
 
@@ -98,5 +106,11 @@ public class MovieService implements IMovieService {
     private Movie getMovieById(Long id) {
         return movieRepository.findById(id)
                 .orElseThrow(() -> new NullPointerException("Movie not exist with id: " + id));
+    }
+    private void logger(String action, Long id) {
+        if (logger.isInfoEnabled())
+            logger.info("Movie" + action + "with id {}", id);
+        else
+            logger.debug("Movie" + action + "successfully with id {}", id);
     }
 }

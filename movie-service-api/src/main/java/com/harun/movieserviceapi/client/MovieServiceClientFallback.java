@@ -54,7 +54,7 @@ public class MovieServiceClientFallback implements MovieServiceClient {
         return ResponseFactory.createResponse(movieAndActorDTO, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/all-data")
+    @Override
     public ResponseEntity<Response> getAllData() {
         return ResponseFactory.createResponse(Map.of(), HttpStatus.NOT_FOUND);
     }

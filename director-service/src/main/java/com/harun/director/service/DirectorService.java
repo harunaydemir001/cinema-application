@@ -9,30 +9,37 @@ import com.harun.director.mapper.PageMapper;
 import com.harun.director.model.Director;
 import com.harun.director.repository.DirectorRepository;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class DirectorService implements IDirectorService {
-
+    private static final Logger logger = LoggerFactory.getLogger(DirectorService.class);
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
+
     private final DirectorRepository directorRepository;
 
     @Override
     public DirectorDTO save(DirectorDTO directorDTO) {
         Director director = mapper.directorDTOToDirector(directorDTO);
         directorRepository.save(director);
+        logger("save", director.getId());
         return get(director.getId());
     }
 
     @Override
     public DirectorDTO update(DirectorDTO directorDTO, Long id) {
         directorRepository.save(mapper.updateDirectorFromDTO(directorDTO, getDirectorById(id)));
+        logger("update", id);
         return get(id);
     }
 
@@ -66,5 +73,11 @@ public class DirectorService implements IDirectorService {
     private Director getDirectorById(Long id) {
         return directorRepository.findById(id)
                 .orElseThrow(() -> new NullPointerException("Director not exist with id: " + id));
+    }
+    private void logger(String action, Long id) {
+        if (logger.isInfoEnabled())
+            logger.info("Actor" + action + "with id {}", id);
+        else
+            logger.debug("Actor" + action + "successfully with id {}", id);
     }
 }

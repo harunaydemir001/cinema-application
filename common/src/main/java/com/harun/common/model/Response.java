@@ -5,12 +5,14 @@ import com.fasterxml.jackson.annotation.JsonRawValue;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
 public class Response implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
     private String code;
     private String message;
