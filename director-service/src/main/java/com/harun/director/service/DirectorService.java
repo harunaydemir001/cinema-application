@@ -76,8 +76,8 @@ public class DirectorService implements IDirectorService {
     }
     private void logger(String action, Long id) {
         if (logger.isInfoEnabled())
-            logger.info("Actor" + action + "with id {}", id);
+            logger.info("Director " + action + " with id {}", id);
         else
-            logger.debug("Actor" + action + "successfully with id {}", id);
+            logger.debug("Director " + action + " successfully with id {}", id);
     }
 }

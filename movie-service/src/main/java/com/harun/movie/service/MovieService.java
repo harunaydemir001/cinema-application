@@ -109,8 +109,8 @@ public class MovieService implements IMovieService {
     }
     private void logger(String action, Long id) {
         if (logger.isInfoEnabled())
-            logger.info("Movie" + action + "with id {}", id);
+            logger.info("Movie " + action + " with id {}", id);
         else
-            logger.debug("Movie" + action + "successfully with id {}", id);
+            logger.debug("Movie " + action + " successfully with id {}", id);
     }
 }
