@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 })
 @EnableMongoRepositories(basePackages = "com.harun.actor.repository")
 @EnableSwagger2
-@EnableFeignClients
 public class ActorServiceApplication {
 
     public static void main(String[] args) {

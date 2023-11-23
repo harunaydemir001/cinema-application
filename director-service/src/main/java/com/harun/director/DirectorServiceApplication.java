@@ -10,7 +10,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 		"com.harun.director"
 })
 @EnableSwagger2
-@EnableFeignClients
 public class DirectorServiceApplication {
 
 	public static void main(String[] args) {

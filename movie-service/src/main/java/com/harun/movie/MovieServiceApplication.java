@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
         "com.harun.movie"
 })
 @EnableSwagger2
-@EnableFeignClients()
 public class MovieServiceApplication {
 
     public static void main(String[] args) {
