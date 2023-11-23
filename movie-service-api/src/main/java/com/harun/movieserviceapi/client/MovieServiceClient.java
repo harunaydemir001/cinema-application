@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "movie-service", url = "http://localhost:8080/movie", configuration = FeignClientConfiguration.class, fallback = MovieServiceClientFallback.class, primary = false)
+@FeignClient(name = "movie-service", url = "http://localhost:8080/api/v1/movie", configuration = FeignClientConfiguration.class, fallback = MovieServiceClientFallback.class, primary = false)
 public interface MovieServiceClient {
 
     @PostMapping

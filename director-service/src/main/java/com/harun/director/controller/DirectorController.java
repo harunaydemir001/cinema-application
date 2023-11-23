@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
         tags = "CRUD REST APIs for Director in Cinema",
         description = "CRUD REST APIs in Cinema to CREATE, UPDATE, GET, DELETE And FILTER director details")
 @RequiredArgsConstructor
-@RequestMapping("/director")
+@RequestMapping("/api/v1/director")
 @Validated
 public class DirectorController implements BaseController<DirectorDTO, Long> {
 

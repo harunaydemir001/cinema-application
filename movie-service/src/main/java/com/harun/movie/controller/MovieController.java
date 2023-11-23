@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
         tags = "CRUD REST APIs for Movie in Cinema",
         description = "CRUD REST APIs in Cinema to CREATE, UPDATE, GET, DELETE And FILTER movie details")
 @RequiredArgsConstructor
-@RequestMapping("/movie")
+@RequestMapping("/api/v1/movie")
 @Validated
 public class MovieController implements BaseController<MovieDTO, Long> {
     private final IMovieService iMovieService;
