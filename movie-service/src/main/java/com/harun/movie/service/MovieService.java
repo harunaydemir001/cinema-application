@@ -56,7 +56,7 @@ public class MovieService implements IMovieService {
         Movie movie = movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         movie.setStatus(StatusEnum.DELETED);
         if (logger.isInfoEnabled())
-            logger.info("Movie status change to DELETED with id: " + id);
+            logger.info("Movie status change to" + StatusEnum.DELETED + "with id: " + id);
         movieRepository.save(movie);
     }
 
