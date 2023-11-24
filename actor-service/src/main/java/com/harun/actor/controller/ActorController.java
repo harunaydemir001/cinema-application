@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
         description = "CRUD REST APIs in Cinema to CREATE, UPDATE, GET, DELETE And FILTER actor details")
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/actor")
+@RequestMapping("/api/v1/actor")
 @Validated
 public class ActorController implements BaseController<ActorDTO, String> {
 

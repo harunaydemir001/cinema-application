@@ -1,4 +1,10 @@
 spring:
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+    timeout: 2000
   data:
     mongodb:
       host: localhost
@@ -17,4 +23,3 @@ spring:
   devtools:
     livereload:
       port: 35730
-

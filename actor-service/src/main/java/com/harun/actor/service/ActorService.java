@@ -10,12 +10,16 @@ import com.harun.common.enums.StatusEnum;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,28 +36,32 @@ public class ActorService implements IActorService {
     @Override
     public ActorDTO save(ActorDTO actorDTO) {
         Actor actor = mapper.actorDTOToActor(actorDTO);
-        actorRepository.save(actor);
-        logger("save", actor.getId());
-        return get(actor.getId());
+        return mapper.actorToActorDTO(actorRepository.save(actor));
     }
 
     @Override
+    @CachePut(value  = "actor", key = "#result.id")
     public ActorDTO update(ActorDTO actorDTO, String id) {
-        actorRepository.save(mapper.updateActorFromDTO(actorDTO, getActorById(id)));
-        logger("update", id);
-        return get(id);
+        Actor incomingActor = actorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        Actor actor = mapper.updateActorFromDTO(actorDTO, incomingActor);
+        return mapper.actorToActorDTO(actorRepository.save(actor));
+
     }
 
     @Override
+    @CacheEvict(value  = "actor", key = "#result.id")
     public void delete(String id) {
-        Actor actor = getActorById(id);
+        Actor actor = actorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         actor.setStatus(StatusEnum.DELETED);
+        if (logger.isInfoEnabled())
+            logger.info("Actor status change to" + StatusEnum.DELETED + "with id: " + id);
         actorRepository.save(actor);
     }
 
     @Override
+    @Cacheable(value  = "actor", key = "#id")
     public ActorDTO get(String id) {
-        Actor actor = getActorById(id);
+        Actor actor = actorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return mapper.actorToActorDTO(actor);
     }
 
@@ -76,16 +84,5 @@ public class ActorService implements IActorService {
         return getAll(Pageable.unpaged()).getContent().stream()
                 .filter(actor -> actor.getMovieTitles().contains(movieTitle))
                 .collect(Collectors.toList());
-    }
-
-    private Actor getActorById(String id) {
-        return actorRepository.findById(id)
-                .orElseThrow(() -> new NullPointerException("Actor not exist with id: " + id));
-    }
-    private void logger(String action, String id) {
-        if (logger.isInfoEnabled())
-            logger.info("Actor " + action + " with id {}", id);
-        else
-            logger.debug("Actor " + action + " successfully with id {}", id);
     }
 }
