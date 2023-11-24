@@ -13,4 +13,12 @@ public abstract class BaseDTO<T> {
     private T id;
     @ApiModelProperty(example = "ACTIVE", notes = "Status of the Object")
     private StatusEnum status;
+
+    public void setId(T id) {
+        if (this.id == null) {
+            this.id = id;
+        } else {
+            throw new IllegalStateException("ID can't be updated");
+        }
+    }
 }
