@@ -17,5 +17,5 @@ public interface MapperGenerator {
 
     @Mapping(target = "id", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Movie updateActorFromDTO(MovieDTO movieDTO, @MappingTarget() Movie movie);
+    Movie updateMovieFromDTO(MovieDTO movieDTO, @MappingTarget() Movie movie);
 }

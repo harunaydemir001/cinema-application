@@ -23,6 +23,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -40,28 +41,28 @@ public class MovieService implements IMovieService {
     @Override
     public MovieDTO save(MovieDTO movieDTO) {
         Movie movie = mapper.movieDTOToMovie(movieDTO);
-        movieRepository.save(movie);
-        logger("save", movie.getId());
-        return get(movie.getId());
+        return mapper.movieToMovieDTO(movieRepository.save(movie));
     }
 
     @Override
     public MovieDTO update(MovieDTO movieDTO, Long id) {
-        movieRepository.save(mapper.updateActorFromDTO(movieDTO, getMovieById(id)));
-        logger("update", id);
-        return get(id);
+        Movie incomingMovie = movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        Movie movie = mapper.updateMovieFromDTO(movieDTO, incomingMovie);
+        return mapper.movieToMovieDTO(movieRepository.save(movie));
     }
 
     @Override
     public void delete(Long id) {
-        Movie movie = getMovieById(id);
+        Movie movie = movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         movie.setStatus(StatusEnum.DELETED);
+        if (logger.isInfoEnabled())
+            logger.info("Movie status change to DELETED with id: " + id);
         movieRepository.save(movie);
     }
 
     @Override
     public MovieDTO get(Long id) {
-        Movie movie = getMovieById(id);
+        Movie movie = movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return mapper.movieToMovieDTO(movie);
     }
 
@@ -101,16 +102,5 @@ public class MovieService implements IMovieService {
                 "allActors", allActors,
                 "allDirectors", allDirectors,
                 "allMovies", allMovies);
-    }
-
-    private Movie getMovieById(Long id) {
-        return movieRepository.findById(id)
-                .orElseThrow(() -> new NullPointerException("Movie not exist with id: " + id));
-    }
-    private void logger(String action, Long id) {
-        if (logger.isInfoEnabled())
-            logger.info("Movie " + action + " with id {}", id);
-        else
-            logger.debug("Movie " + action + " successfully with id {}", id);
     }
 }
