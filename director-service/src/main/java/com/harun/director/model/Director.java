@@ -1,20 +1,19 @@
 package com.harun.director.model;
 
 import com.harun.common.base.BaseEntity;
-import io.swagger.annotations.ApiModel;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,7 +24,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Table(name = "director")
 @Where(clause = "status != 'DELETED'")
-@ApiModel(value = "Director", description = "All details about the Director")
+@Schema(name = "Director", description = "All details about the Director")
 public class Director extends BaseEntity implements Serializable {
     @NotNull
     private String name;

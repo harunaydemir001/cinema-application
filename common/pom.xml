@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.17</version>
+        <version>3.1.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.harun</groupId>
@@ -18,11 +18,10 @@
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <lombok.version>1.18.30</lombok.version>
-        <springfox-swagger2.version>2.8.0</springfox-swagger2.version>
-        <springfox-swagger-ui.version>2.8.0</springfox-swagger-ui.version>
         <java.version>21</java.version>
-        <spring-cloud.version>2021.0.8</spring-cloud.version>
+        <spring-cloud.version>2022.0.4</spring-cloud.version>
         <json-simple.version>1.1.1</json-simple.version>
+        <springdoc-openapi-starter-webmvc-ui.version>2.2.0</springdoc-openapi-starter-webmvc-ui.version>
     </properties>
     <dependencies>
         <dependency>
@@ -65,31 +64,18 @@
             <groupId>com.github.ben-manes.caffeine</groupId>
             <artifactId>caffeine</artifactId>
         </dependency>
-
-
-        <!-- Swagger -->
-
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${springfox-swagger2.version}</version>
-            <scope>compile</scope>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc-openapi-starter-webmvc-ui.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${springfox-swagger-ui.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <!-- End Swagger -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -99,7 +85,6 @@
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-okhttp</artifactId>
         </dependency>
-
         <dependency>
             <groupId>io.github.openfeign</groupId>
             <artifactId>feign-httpclient</artifactId>
@@ -112,11 +97,6 @@
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>${json-simple.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.validation</groupId>
-            <artifactId>jakarta.validation-api</artifactId>
-            <version>3.0.2</version>
         </dependency>
     </dependencies>
 

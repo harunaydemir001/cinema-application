@@ -10,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Map;
 
@@ -34,8 +33,7 @@ public class MovieServiceClientFallback implements MovieServiceClient {
 
     @Override
     public ResponseEntity<Response> get(String id) {
-        MovieDTO movieDTO = new MovieDTO();
-        return ResponseFactory.createResponse(movieDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new MovieDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -50,8 +48,7 @@ public class MovieServiceClientFallback implements MovieServiceClient {
 
     @Override
     public ResponseEntity<Response> combineFilmAndActors(String title) {
-        MovieAndActorDTO movieAndActorDTO = new MovieAndActorDTO();
-        return ResponseFactory.createResponse(movieAndActorDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new MovieAndActorDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override

@@ -1,7 +1,11 @@
 package com.harun.director.repository;
 
-import com.harun.directorserviceapi.dto.DirectorDTO;
 import com.harun.director.model.Director;
+import com.harun.directorserviceapi.dto.DirectorDTO;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -9,13 +13,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.util.ObjectUtils;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
 public interface DirectorRepository extends JpaRepository<Director, Long>, JpaSpecificationExecutor<Director> {
-    default Page<Director> findByFilter(Pageable pageable, DirectorDTO directorDTO){
+    default Page<Director> findByFilter(Pageable pageable, DirectorDTO directorDTO) {
         return findAll(specification(directorDTO), pageable);
     }
 

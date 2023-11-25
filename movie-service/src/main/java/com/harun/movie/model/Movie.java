@@ -4,17 +4,18 @@ import com.harun.common.base.BaseEntity;
 import com.harun.movieserviceapi.enums.Genre;
 import com.harun.movieserviceapi.enums.Quality;
 import com.harun.movieserviceapi.enums.SpecialFeaturesEnum;
-import io.swagger.annotations.ApiModel;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Positive;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
@@ -27,7 +28,7 @@ import java.util.Set;
 @AllArgsConstructor()
 @Table(name = "movie")
 @Where(clause = "status != 'DELETED'")
-@ApiModel(value = "Movie", description = "All details about the Movie Object")
+@Schema(name = "Movie", description = "All details about the Movie Object")
 public class Movie extends BaseEntity implements Serializable {
 
     @NotNull

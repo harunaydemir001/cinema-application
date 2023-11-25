@@ -3,7 +3,6 @@ package com.harun.movieserviceapi.client;
 import com.harun.common.configuration.FeignClientConfiguration;
 import com.harun.common.model.Response;
 import com.harun.movieserviceapi.dto.MovieDTO;
-import io.swagger.annotations.ApiParam;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +30,7 @@ public interface MovieServiceClient {
     ResponseEntity<Response> filter(Pageable pageable, @RequestBody() MovieDTO movieDTO);
 
     @GetMapping("/combine-actors")
-    ResponseEntity<Response> combineFilmAndActors(@ApiParam(value = "Movie Title") @RequestParam() String title);
+    ResponseEntity<Response> combineFilmAndActors(@RequestParam() String title);
 
     @GetMapping("/all-data")
     ResponseEntity<Response> getAllData();

@@ -8,6 +8,7 @@ import com.harun.director.mapper.PageMapper;
 import com.harun.director.model.Director;
 import com.harun.director.repository.DirectorRepository;
 import com.harun.directorserviceapi.dto.DirectorDTO;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service

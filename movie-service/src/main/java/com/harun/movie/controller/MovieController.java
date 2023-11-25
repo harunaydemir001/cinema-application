@@ -5,8 +5,15 @@ import com.harun.common.factory.ResponseFactory;
 import com.harun.common.model.Response;
 import com.harun.movieserviceapi.dto.MovieDTO;
 import com.harun.movie.service.IMovieService;
-import io.swagger.annotations.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +22,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@Api(
-        tags = "CRUD REST APIs for Movie in Cinema",
+@Tag(
+        name = "CRUD REST APIs for Movie in Cinema",
         description = "CRUD REST APIs in Cinema to CREATE, UPDATE, GET, DELETE And FILTER movie details")
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/movie")
@@ -25,70 +32,82 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     private final IMovieService iMovieService;
 
     @Override
-    @ApiOperation(value = "Save Movie")
+    @Operation(summary = "Save Movie")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Movie Created", response = Response.class)
+            @ApiResponse(responseCode = "201", description = "Movie Created", content = {
+                    @Content(mediaType = "application/json", schema =
+                    @Schema(implementation = Response.class))
+            })
     })
     @PostMapping
-    public ResponseEntity<Response> save(@ApiParam(value = "Movie DTO", required = true) @RequestBody MovieDTO movieDTO) {
+    public ResponseEntity<Response> save(@Parameter(description = "Movie DTO", required = true) @RequestBody MovieDTO movieDTO) {
         return ResponseFactory.createResponse(iMovieService.save(movieDTO), HttpStatus.CREATED);
     }
 
     @Override
-    @ApiOperation(value = "Update Movie")
+    @Operation(summary = "Update Movie")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "HTTP Status OK", response = Response.class)
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
+                    @Content(mediaType = "application/json", schema =
+                    @Schema(implementation = Response.class))
+            })
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Response> update(@ApiParam(value = "Movie Id", required = true) @PathVariable("id") Long id,
-                                           @ApiParam(value = "Movie DTO", required = true) @RequestBody MovieDTO movieDTO) {
+    public ResponseEntity<Response> update(@Parameter(description = "Movie Id", required = true) @PathVariable("id") Long id,
+                                           @Parameter(description = "Movie DTO", required = true) @RequestBody MovieDTO movieDTO) {
         return ResponseFactory.createResponse(iMovieService.update(movieDTO, id), HttpStatus.OK);
     }
 
     @Override
-    @ApiOperation(value = "Delete Movie")
+    @Operation(summary = "Delete Movie")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "HTTP Status OK")
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK")
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<Response> delete(@ApiParam(value = "Movie Id", required = true) @PathVariable("id") Long id) {
+    public ResponseEntity<Response> delete(@Parameter(description = "Movie Id", required = true) @PathVariable("id") Long id) {
         iMovieService.delete(id);
         return ResponseFactory.createSuccessResponse();
     }
 
     @Override
-    @ApiOperation(value = "Get Movie")
+    @Operation(summary = "Get Movie")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "HTTP Status OK", response = Response.class)
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
+                    @Content(mediaType = "application/json", schema =
+                    @Schema(implementation = Response.class))
+            })
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Response> get(@ApiParam(value = "Movie Id", required = true) @PathVariable("id") Long id) {
+    public ResponseEntity<Response> get(@Parameter(description = "Movie Id", required = true) @PathVariable("id") Long id) {
         return ResponseFactory.createResponse(iMovieService.get(id), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Get All Movies")
+    @Operation(summary = "Get All Movies")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "HTTP Status OK", response = Response.class)
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
+                    @Content(mediaType = "application/json", schema =
+                    @Schema(implementation = Response.class))
+            })
     })
     @GetMapping()
-    public ResponseEntity<Response> getAll(Pageable pageable) {
+    public ResponseEntity<Response> getAll(@ParameterObject Pageable pageable) {
         return ResponseFactory.createResponse(iMovieService.getAll(pageable), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Filter Movies", notes = "Filtered Movie By Selection Field and Return Page")
+    @Operation(summary = "Filter Movies", description = "Filtered Movie By Selection Field and Return Page")
     @PostMapping("/filter")
-    public ResponseEntity<Response> filter(Pageable pageable,
-                                           @ApiParam(value = "Movie DTO") @RequestBody() MovieDTO movieDTO) {
+    public ResponseEntity<Response> filter(@ParameterObject Pageable pageable,
+                                           @Parameter(description = "Movie DTO") @RequestBody() MovieDTO movieDTO) {
         return ResponseFactory.createResponse(iMovieService.filter(pageable, movieDTO), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Combine Film And Actors")
+    @Operation(summary = "Combine Film And Actors")
     @GetMapping("/combine-actors")
-    public ResponseEntity<Response> combineFilmAndActors(@ApiParam(value = "Movie Title") @RequestParam() String title) {
+    public ResponseEntity<Response> combineFilmAndActors(@Parameter(description = "Movie Title") @RequestParam() String title) {
         return ResponseFactory.createResponse(iMovieService.combineFilmAndActors(title), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Get All Movies, Actors and Directors")
+    @Operation(summary = "Get All Movies, Actors and Directors")
     @GetMapping("/all-data")
     public ResponseEntity<Response> getAllData() {
         return ResponseFactory.createResponse(iMovieService.getAllData(), HttpStatus.OK);

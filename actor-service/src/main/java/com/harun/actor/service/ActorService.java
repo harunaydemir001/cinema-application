@@ -18,8 +18,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import jakarta.persistence.EntityNotFoundException;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +40,7 @@ public class ActorService implements IActorService {
     }
 
     @Override
-    @CachePut(value  = "actor", key = "#result.id")
+    @CachePut(value = "actor", key = "#result.id")
     public ActorDTO update(ActorDTO actorDTO, String id) {
         Actor incomingActor = actorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         Actor actor = mapper.updateActorFromDTO(actorDTO, incomingActor);
@@ -49,7 +49,7 @@ public class ActorService implements IActorService {
     }
 
     @Override
-    @CacheEvict(value  = "actor", key = "#result.id")
+    @CacheEvict(value = "actor", key = "#result.id")
     public void delete(String id) {
         Actor actor = actorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         actor.setStatus(StatusEnum.DELETED);
@@ -59,7 +59,7 @@ public class ActorService implements IActorService {
     }
 
     @Override
-    @Cacheable(value  = "actor", key = "#id")
+    @Cacheable(value = "actor", key = "#id")
     public ActorDTO get(String id) {
         Actor actor = actorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return mapper.actorToActorDTO(actor);

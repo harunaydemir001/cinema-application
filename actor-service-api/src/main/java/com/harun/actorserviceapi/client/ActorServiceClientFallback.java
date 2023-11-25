@@ -32,8 +32,7 @@ public class ActorServiceClientFallback implements ActorServiceClient {
 
     @Override
     public ResponseEntity<Response> get(String id) {
-        ActorDTO actorDTO = new ActorDTO();
-        return ResponseFactory.createResponse(actorDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new ActorDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override

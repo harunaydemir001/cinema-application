@@ -1,9 +1,10 @@
 package com.harun.common.base;
 
 import com.harun.common.enums.StatusEnum;
+
+import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 @Data

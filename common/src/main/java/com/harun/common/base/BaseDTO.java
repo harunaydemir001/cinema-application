@@ -1,18 +1,20 @@
 package com.harun.common.base;
 
 import com.harun.common.enums.StatusEnum;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 
-import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
+
+import static io.swagger.v3.oas.annotations.media.Schema.AccessMode.READ_ONLY;
 
 @Data
 @MappedSuperclass
 public abstract class BaseDTO<T> implements Serializable {
-    @ApiModelProperty(example = "1", notes = "Id of the Object", hidden = true, readOnly = true)
+    @Schema(example = "1", description = "Id of the Object", hidden = true, accessMode = READ_ONLY)
     private T id;
-    @ApiModelProperty(example = "ACTIVE", notes = "Status of the Object")
+    @Schema(example = "ACTIVE", description = "Status of the Object")
     private StatusEnum status;
 
     public void setId(T id) {

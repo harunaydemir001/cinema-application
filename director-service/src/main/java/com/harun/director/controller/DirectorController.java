@@ -3,10 +3,17 @@ package com.harun.director.controller;
 import com.harun.common.base.BaseController;
 import com.harun.common.factory.ResponseFactory;
 import com.harun.common.model.Response;
-import com.harun.directorserviceapi.dto.DirectorDTO;
 import com.harun.director.service.IDirectorService;
-import io.swagger.annotations.*;
+import com.harun.directorserviceapi.dto.DirectorDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +21,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Api(
-        tags = "CRUD REST APIs for Director in Cinema",
+@Tag(
+        name = "CRUD REST APIs for Director in Cinema",
         description = "CRUD REST APIs in Cinema to CREATE, UPDATE, GET, DELETE And FILTER director details")
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/director")
@@ -25,61 +32,73 @@ public class DirectorController implements BaseController<DirectorDTO, Long> {
     private final IDirectorService iDirectorService;
 
     @Override
-    @ApiOperation(value = "Save Director")
+    @Operation(summary = "Save Director")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Director Created", response = Response.class)
+            @ApiResponse(responseCode = "201", description = "Director Created", content = {
+                    @Content(mediaType = "application/json", schema =
+                    @Schema(implementation = Response.class))
+            })
     })
     @PostMapping
-    public ResponseEntity<Response> save(@ApiParam(value = "Director DTO", required = true) @RequestBody DirectorDTO directorDTO) {
+    public ResponseEntity<Response> save(@Parameter(description = "Director DTO", required = true) @RequestBody DirectorDTO directorDTO) {
         return ResponseFactory.createResponse(iDirectorService.save(directorDTO), HttpStatus.CREATED);
     }
 
     @Override
-    @ApiOperation(value = "Update Director")
+    @Operation(summary = "Update Director")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "HTTP Status OK", response = Response.class)
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
+                    @Content(mediaType = "application/json", schema =
+                    @Schema(implementation = Response.class))
+            })
     })
     @PutMapping("/{id}")
-    public ResponseEntity<Response> update(@ApiParam(value = "Director Id", required = true) @PathVariable("id") Long id,
-                                           @ApiParam(value = "Director DTO", required = true) @RequestBody DirectorDTO directorDTO) {
+    public ResponseEntity<Response> update(@Parameter(description = "Director Id", required = true) @PathVariable("id") Long id,
+                                           @Parameter(description = "Director DTO", required = true) @RequestBody DirectorDTO directorDTO) {
         return ResponseFactory.createResponse(iDirectorService.update(directorDTO, id), HttpStatus.OK);
     }
 
     @Override
-    @ApiOperation(value = "Get Director")
+    @Operation(summary = "Get Director")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "HTTP Status OK", response = Response.class)
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
+                    @Content(mediaType = "application/json", schema =
+                    @Schema(implementation = Response.class))
+            })
     })
     @GetMapping("/{id}")
-    public ResponseEntity<Response> get(@ApiParam(value = "Director Id", required = true) @PathVariable(value = "id") Long id) {
+    public ResponseEntity<Response> get(@Parameter(description = "Director Id", required = true) @PathVariable(value = "id") Long id) {
         return ResponseFactory.createResponse(iDirectorService.get(id), HttpStatus.OK);
     }
 
     @Override
-    @ApiOperation(value = "Delete Director")
+    @Operation(summary = "Delete Director")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "HTTP Status OK")
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK")
     })
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Response> delete(@ApiParam(value = "Director Id", required = true) @PathVariable(value = "id") Long id) {
+    public ResponseEntity<Response> delete(@Parameter(description = "Director Id", required = true) @PathVariable(value = "id") Long id) {
         iDirectorService.delete(id);
         return ResponseFactory.createSuccessResponse();
     }
 
-    @ApiOperation(value = "Get All Directors")
+    @Operation(summary = "Get All Directors")
     @ApiResponses({
-            @ApiResponse(code = 200, message = "HTTP Status OK", response = Response.class)
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
+                    @Content(mediaType = "application/json", schema =
+                    @Schema(implementation = Response.class))
+            })
     })
     @GetMapping()
-    public ResponseEntity<Response> getAll(Pageable pageable) {
+    public ResponseEntity<Response> getAll(@ParameterObject Pageable pageable) {
         return ResponseFactory.createResponse(iDirectorService.getAll(pageable), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Filter Directors", notes = "Filtered Actor By Selection Field and Return Page")
+    @Operation(summary = "Filter Directors", description = "Filtered Actor By Selection Field and Return Page")
     @PostMapping("/filter")
-    public ResponseEntity<Response> filter(Pageable pageable,
-                                           @ApiParam(value = "Director DTO") @RequestBody() DirectorDTO directorDTO) {
+    public ResponseEntity<Response> filter(@ParameterObject Pageable pageable,
+                                           @Parameter(description = "Director DTO") @RequestBody() DirectorDTO directorDTO) {
         return ResponseFactory.createResponse(iDirectorService.filter(pageable, directorDTO), HttpStatus.OK);
     }
 }

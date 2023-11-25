@@ -32,8 +32,7 @@ public class DirectorServiceClientFallback implements DirectorServiceClient {
 
     @Override
     public ResponseEntity<Response> get(String id) {
-        DirectorDTO directorDTO = new DirectorDTO();
-        return ResponseFactory.createResponse(directorDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new DirectorDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override

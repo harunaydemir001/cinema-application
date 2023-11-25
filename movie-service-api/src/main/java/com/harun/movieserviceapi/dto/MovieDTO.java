@@ -4,8 +4,7 @@ import com.harun.common.base.BaseDTO;
 import com.harun.movieserviceapi.enums.Genre;
 import com.harun.movieserviceapi.enums.Quality;
 import com.harun.movieserviceapi.enums.SpecialFeaturesEnum;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.io.Serializable;
@@ -18,38 +17,38 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(setterPrefix = "with")
-@ApiModel(value = "Movie", description = "All details about the Movie Object")
+@Schema(name = "Movie", description = "All details about the Movie Object")
 public class MovieDTO extends BaseDTO<Long> implements Serializable {
-    @ApiModelProperty(example = "title", notes = "Name of the Movie Object", required = true)
+    @Schema(example = "title", description = "Name of the Movie Object")
     private String title;
-    @ApiModelProperty(notes = "Release Date of the Movie Object", required = true)
+    @Schema(description = "Release Date of the Movie Object")
     private Date releaseDate;
-    @ApiModelProperty(example = "120", notes = "Length of the Movie Object", allowableValues = "range[1, 120]", required = true)
+    @Schema(example = "120", description = "Length of the Movie Object", allowableValues = "range[1, 120]")
     private Integer length;
-    @ApiModelProperty(example = "{\n" +
+    @Schema(example = "{\n" +
             "        \"TRAILERS\": \"Movie Trailer\",\n" +
             "        \"SCENES\": \"Scenes\"\n" +
-            "    }", notes = "Special Features of the Movie Object")
+            "    }", description = "Special Features of the Movie Object")
     private Map<SpecialFeaturesEnum, String> specialFeatures;
-    @ApiModelProperty("Last Update of the Movie Object")
+    @Schema(description = "Last Update of the Movie Object")
     private Date lastUpdate;
-    @ApiModelProperty(example = "[\n" +
+    @Schema(example = "[\n" +
             "    \"ACTION\", \n" +
             "    \"SANCTIFICATION\"\n" +
-            "  ]", notes = "Genre of the Movie Object")
+            "  ]", description = "Genre of the Movie Object")
     private Set<Genre> genre;
-    @ApiModelProperty(example = "ENGLISH", notes = "Language of the Movie Object")
+    @Schema(example = "ENGLISH", description = "Language of the Movie Object")
     private String language;
-    @ApiModelProperty(example = "7.0", notes = "IMDB Point of the Movie Object")
+    @Schema(example = "7.0", description = "IMDB Point of the Movie Object")
     private Double imdbPoint;
-    @ApiModelProperty(example = "HD", notes = "Quality of Movie Object")
+    @Schema(example = "HD", description = "Quality of Movie Object")
     private Quality quality;
-    @ApiModelProperty(example = "True", notes = "Whether the movie won an Oscar or not")
+    @Schema(example = "True", description = "Whether the movie won an Oscar or not")
     private Boolean isOscar;
-    @ApiModelProperty(example = "[\n" +
+    @Schema(example = "[\n" +
             "    \"Leonardo DiCaprio\", \n" +
             "    \"Tom Hardy\"\n" +
             "  ]",
-            notes = "Actor Names Playing in the Movie")
+            description = "Actor Names Playing in the Movie")
     private Set<String> actorNames;
 }

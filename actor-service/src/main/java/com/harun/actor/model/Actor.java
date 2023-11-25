@@ -1,7 +1,8 @@
 package com.harun.actor.model;
 
 import com.harun.common.enums.StatusEnum;
-import io.swagger.annotations.ApiModel;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +11,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -20,7 +20,7 @@ import java.util.Set;
 @Builder(setterPrefix = "with")
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "Actor", description = "All details about the Actor Object")
+@Schema(name = "Actor", description = "All details about the Actor Object")
 public class Actor implements Serializable {
     @Id
     @Indexed(unique = true)
