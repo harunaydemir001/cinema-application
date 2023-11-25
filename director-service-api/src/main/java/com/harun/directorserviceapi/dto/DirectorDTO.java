@@ -2,6 +2,9 @@ package com.harun.directorserviceapi.dto;
 
 import com.harun.common.base.BaseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,4 +32,8 @@ public class DirectorDTO extends BaseDTO<Long> implements Serializable {
     private Date birthDay;
     @Schema(description = "Last Update of the Director")
     private Date lastUpdate;
+    @Schema(example = "harunaydemir001@gmail.com", description = "Director Email")
+    private String email;
+    @Schema(example = "051111111111", description = "Director Phone Number")
+    private String phoneNumber;
 }

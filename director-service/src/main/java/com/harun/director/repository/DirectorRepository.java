@@ -63,6 +63,16 @@ public interface DirectorRepository extends JpaRepository<Director, Long>, JpaSp
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
+            if (!ObjectUtils.isEmpty(directorDTO.getEmail())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("email"), directorDTO.getEmail());
+                mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
+            }
+
+            if (!ObjectUtils.isEmpty(directorDTO.getPhoneNumber())) {
+                Predicate predicate = criteriaBuilder.equal(root.get("phoneNumber"), directorDTO.getPhoneNumber());
+                mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
+            }
+
             return mainPredicate;
 
         };

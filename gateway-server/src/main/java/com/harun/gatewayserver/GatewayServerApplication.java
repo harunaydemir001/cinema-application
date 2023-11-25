@@ -23,7 +23,8 @@ public class GatewayServerApplication {
                 .route(p -> p
                         .path("/cinema/api/v1/movie-service/***")
                         .filters(f -> f.rewritePath("/cinema/api/v1/movie-service/(?<segment>.*)", RouterConstant.SEGMENT)
-                                .addResponseHeader(RouterConstant.X_RESPONSE_TIME, LocalDateTime.now().toString()))
+                                .addResponseHeader(RouterConstant.X_RESPONSE_TIME, LocalDateTime.now().toString())
+                                .circuitBreaker(config->config.setName("movieCircuitBreaker")))
                         .uri("lb://MOVIE-SERVICE"))
                 .route(p -> p
                         .path("/cinema/api/v1/director-service/***")

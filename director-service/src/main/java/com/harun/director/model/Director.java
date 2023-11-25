@@ -2,12 +2,10 @@ package com.harun.director.model;
 
 import com.harun.common.base.BaseEntity;
 
+import com.harun.director.annotation.phonenumber.PhoneNumberValidation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,4 +37,10 @@ public class Director extends BaseEntity implements Serializable {
     private Date birthDay;
     @Column(name = "last_update")
     private Date lastUpdate;
+    @Email
+    @NotNull
+    private String email;
+    @Column(name = "phone_number")
+    @PhoneNumberValidation
+    private String phoneNumber;
 }
