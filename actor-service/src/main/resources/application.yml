@@ -1,16 +1,16 @@
 spring:
   cache:
     type: redis
-  redis:
-    host: localhost
-    port: 6379
-    timeout: 2000
   data:
     mongodb:
       host: localhost
       port: 27017
       database: actor
       authentication-database: admin
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher

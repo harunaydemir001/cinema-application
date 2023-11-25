@@ -17,9 +17,9 @@ import java.util.Date;
 @Builder(setterPrefix = "with")
 @Schema(name = "Director", description = "All details about the Director")
 public class DirectorDTO extends BaseDTO<Long> implements Serializable {
-    @Schema(example = "name", description = "Name of the Director", required = true)
+    @Schema(example = "name", description = "Name of the Director")
     private String name;
-    @Schema(example = "lastname", description = "Lastname of the Director", required = true)
+    @Schema(example = "lastname", description = "Lastname of the Director")
     private String lastName;
     @Schema(example = "Oscar", description = "Prize of the Director")
     private String prize;

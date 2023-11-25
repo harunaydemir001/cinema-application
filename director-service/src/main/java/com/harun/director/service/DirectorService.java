@@ -12,6 +12,9 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -36,6 +39,7 @@ public class DirectorService implements IDirectorService {
     }
 
     @Override
+    @CachePut(value = "director", key = "#result.id")
     public DirectorDTO update(DirectorDTO directorDTO, Long id) {
         Director incomingDirector = directorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         Director director = mapper.updateDirectorFromDTO(directorDTO, incomingDirector);
@@ -43,12 +47,14 @@ public class DirectorService implements IDirectorService {
     }
 
     @Override
+    @Cacheable(value = "director", key = "#id")
     public DirectorDTO get(Long id) {
         Director director = directorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return mapper.directorToDirectorDTO(director);
     }
 
     @Override
+    @CacheEvict(value = "director", key = "#id")
     public void delete(Long id) {
         Director director = directorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         director.setStatus(StatusEnum.DELETED);

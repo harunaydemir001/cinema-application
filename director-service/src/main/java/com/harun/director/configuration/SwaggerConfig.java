@@ -16,7 +16,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     @Bean
     public OpenAPI springShopOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("´Director API")
+                .info(new Info().title("Director API")
                         .version("1.0.0")
                         .description("Director Application")
                         .contact(new Contact().name("Harun Aydemir").url("https://github.com/harunaydemir001").email("harunaydemir001@gmail.com"))

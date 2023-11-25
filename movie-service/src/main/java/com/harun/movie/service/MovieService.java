@@ -14,16 +14,19 @@ import com.harun.movie.model.Movie;
 import com.harun.movie.repository.MovieRepository;
 import com.harun.movieserviceapi.dto.MovieAndActorDTO;
 import com.harun.movieserviceapi.dto.MovieDTO;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +48,7 @@ public class MovieService implements IMovieService {
     }
 
     @Override
+    @CachePut(value = "movie", key = "#result.id")
     public MovieDTO update(MovieDTO movieDTO, Long id) {
         Movie incomingMovie = movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         Movie movie = mapper.updateMovieFromDTO(movieDTO, incomingMovie);
@@ -52,6 +56,7 @@ public class MovieService implements IMovieService {
     }
 
     @Override
+    @CacheEvict(value = "movie", key = "#id")
     public void delete(Long id) {
         Movie movie = movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         movie.setStatus(StatusEnum.DELETED);
@@ -61,6 +66,7 @@ public class MovieService implements IMovieService {
     }
 
     @Override
+    @Cacheable(value = "movie", key = "#id")
     public MovieDTO get(Long id) {
         Movie movie = movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return mapper.movieToMovieDTO(movie);

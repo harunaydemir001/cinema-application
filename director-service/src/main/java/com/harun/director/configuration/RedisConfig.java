@@ -1,4 +1,4 @@
-package com.harun.actor.configuration;
+package com.harun.director.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

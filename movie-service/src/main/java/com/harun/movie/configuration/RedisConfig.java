@@ -1,4 +1,4 @@
-package com.harun.actor.configuration;
+package com.harun.movie.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -64,6 +64,4 @@ public class RedisConfig {
                 .cacheDefaults(redisCacheConfiguration).build();
 
     }
-
-
 }

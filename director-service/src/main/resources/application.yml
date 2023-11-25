@@ -1,4 +1,9 @@
 spring:
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      timeout: 2000
   datasource:
     url: jdbc:mysql://localhost:3306/director?useSSL=false&allowPublicKeyRetrieval=true
     username: root

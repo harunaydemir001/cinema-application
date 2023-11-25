@@ -49,7 +49,7 @@ public class ActorService implements IActorService {
     }
 
     @Override
-    @CacheEvict(value = "actor", key = "#result.id")
+    @CacheEvict(value = "actor", key = "#id")
     public void delete(String id) {
         Actor actor = actorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         actor.setStatus(StatusEnum.DELETED);
