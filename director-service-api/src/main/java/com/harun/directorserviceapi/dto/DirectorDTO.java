@@ -2,9 +2,6 @@ package com.harun.directorserviceapi.dto;
 
 import com.harun.common.base.BaseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

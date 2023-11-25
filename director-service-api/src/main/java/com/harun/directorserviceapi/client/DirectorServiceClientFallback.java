@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-
 @Component
 public class DirectorServiceClientFallback implements DirectorServiceClient {
 
@@ -32,7 +30,7 @@ public class DirectorServiceClientFallback implements DirectorServiceClient {
 
     @Override
     public ResponseEntity<Response> get(String id) {
-        return ResponseFactory.createResponse(new DirectorDTO(), HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(DirectorDTO.builder().build(), HttpStatus.NOT_FOUND);
     }
 
     @Override

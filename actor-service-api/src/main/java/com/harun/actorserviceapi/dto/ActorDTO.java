@@ -3,6 +3,7 @@ package com.harun.actorserviceapi.dto;
 import com.harun.common.base.BaseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(name = "Actor", description = "All details about the Actor")
-
+@Builder(setterPrefix = "with")
 public class ActorDTO extends BaseDTO<String> implements Serializable {
     @Schema(example = "name", description = "Name of the Actor")
     private String name;
