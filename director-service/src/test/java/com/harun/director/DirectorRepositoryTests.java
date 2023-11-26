@@ -49,7 +49,7 @@ public class DirectorRepositoryTests extends BaseTest {
 
         //Then
         assertNotNull(actualDirector);
-        assertNotEquals(0L, actualDirector.getId());
+        assertTrue(actualDirector.getId() > 0);
     }
 
     @Test
