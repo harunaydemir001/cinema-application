@@ -1,4 +1,4 @@
-package com.harun.director;
+package com.harun.common.base;
 
 import org.springframework.test.context.ActiveProfiles;
 

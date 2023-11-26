@@ -59,7 +59,7 @@ public class DirectorService implements IDirectorService {
         Director director = directorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         director.setStatus(StatusEnum.DELETED);
         if (logger.isInfoEnabled())
-            logger.info("Director status change to" + StatusEnum.DELETED + "with id: " + id);
+            logger.info("Director status change to " + StatusEnum.DELETED + " with id: " + id);
         directorRepository.save(director);
     }
 

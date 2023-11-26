@@ -1,5 +1,6 @@
 package com.harun.director;
 
+import com.harun.common.base.BaseTest;
 import com.harun.director.mapper.MapperGenerator;
 import com.harun.director.mapper.MapperGeneratorSingleton;
 import com.harun.director.model.Director;

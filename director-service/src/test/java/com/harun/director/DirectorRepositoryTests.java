@@ -1,6 +1,7 @@
 package com.harun.director;
 
 
+import com.harun.common.base.BaseTest;
 import com.harun.director.model.Director;
 import com.harun.director.repository.DirectorRepository;
 import org.junit.jupiter.api.BeforeEach;

@@ -45,10 +45,6 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.harun</groupId>
             <artifactId>common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
