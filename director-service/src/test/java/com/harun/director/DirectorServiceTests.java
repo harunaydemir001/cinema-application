@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DirectorControllerTests extends BaseTest {
+public class DirectorServiceTests extends BaseTest {
 
     @InjectMocks
     private DirectorService directorService;
