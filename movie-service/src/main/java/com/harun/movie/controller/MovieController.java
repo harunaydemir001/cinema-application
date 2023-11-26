@@ -112,4 +112,17 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     public ResponseEntity<Response> getAllData() {
         return ResponseFactory.createResponse(iMovieService.getAllData(), HttpStatus.OK);
     }
+
+
+    @Operation(summary = "Get Actor")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
+                    @Content(mediaType = "application/json", schema =
+                    @Schema(implementation = Response.class))
+            })
+    })
+    @GetMapping("actor/{id}")
+    public ResponseEntity<Response> getActorById(@Parameter(description = "Actor Id", required = true) @PathVariable("id") String id) {
+        return ResponseFactory.createResponse(iMovieService.getActorById(id), HttpStatus.OK);
+    }
 }

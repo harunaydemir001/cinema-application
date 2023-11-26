@@ -1,5 +1,6 @@
 package com.harun.movie.service;
 
+import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.common.base.BaseService;
 import com.harun.movieserviceapi.dto.MovieAndActorDTO;
 import com.harun.movieserviceapi.dto.MovieDTO;
@@ -21,4 +22,6 @@ public interface IMovieService extends BaseService<MovieDTO, Long> {
     MovieAndActorDTO combineFilmAndActors(String title);
 
     Map<String, Page> getAllData();
+
+    ActorDTO getActorById(String actorId);
 }

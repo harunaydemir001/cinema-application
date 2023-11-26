@@ -109,4 +109,9 @@ public class MovieService implements IMovieService {
                 "allDirectors", allDirectors,
                 "allMovies", allMovies);
     }
+
+    @Override
+    public ActorDTO getActorById(String actorId) {
+        return actorServiceClientService.get(actorId);
+    }
 }
