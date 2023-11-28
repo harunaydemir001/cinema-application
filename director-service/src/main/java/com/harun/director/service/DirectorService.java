@@ -2,6 +2,8 @@ package com.harun.director.service;
 
 
 import com.harun.common.enums.StatusEnum;
+import com.harun.common.util.ResponseExceptionUtil;
+import com.harun.director.constant.ActorErrorCodeConstant;
 import com.harun.director.mapper.MapperGenerator;
 import com.harun.director.mapper.MapperGeneratorSingleton;
 import com.harun.director.mapper.PageMapper;
@@ -18,6 +20,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +34,7 @@ public class DirectorService implements IDirectorService {
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
 
     private final DirectorRepository directorRepository;
+    private final ResponseExceptionUtil responseExceptionUtil;
 
     @Override
     public DirectorDTO save(DirectorDTO directorDTO) {
@@ -41,6 +45,9 @@ public class DirectorService implements IDirectorService {
     @Override
     @CachePut(value = "director", key = "#result.id")
     public DirectorDTO update(DirectorDTO directorDTO, Long id) {
+        if(directorDTO.getEmail().contains("fdg")){
+            responseExceptionUtil.throwResponseException(HttpStatus.NOT_ACCEPTABLE, ActorErrorCodeConstant.EMAIL_CANT_CONTAINS_FDG);
+        }
         Director incomingDirector = directorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         Director director = mapper.updateDirectorFromDTO(directorDTO, incomingDirector);
         return mapper.directorToDirectorDTO(directorRepository.save(director));

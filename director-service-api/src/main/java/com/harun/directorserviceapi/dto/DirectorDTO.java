@@ -31,6 +31,6 @@ public class DirectorDTO extends BaseDTO<Long> implements Serializable {
     private Date lastUpdate;
     @Schema(example = "harunaydemir001@gmail.com", description = "Director Email")
     private String email;
-    @Schema(example = "051111111111", description = "Director Phone Number")
+    @Schema(example = "05111111111", description = "Director Phone Number")
     private String phoneNumber;
 }

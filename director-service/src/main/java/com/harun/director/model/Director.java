@@ -25,8 +25,10 @@ import java.util.Date;
 @Schema(name = "Director", description = "All details about the Director")
 public class Director extends BaseEntity implements Serializable {
     @NotNull
+    @Size(min = 3, max = 30)
     private String name;
     @NotNull
+    @Size(min = 3, max = 30)
     private String lastName;
     private String prize;
     @Positive(message = "Age must be a positive number")

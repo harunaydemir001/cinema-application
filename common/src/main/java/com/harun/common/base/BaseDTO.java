@@ -20,12 +20,4 @@ public abstract class BaseDTO<T> implements Serializable {
     private T id;
     @Schema(example = "ACTIVE", description = "Status of the Object")
     private StatusEnum status;
-
-    public void setId(T id) {
-        if (this.id == null) {
-            this.id = id;
-        } else {
-            throw new IllegalStateException("ID can't be updated");
-        }
-    }
 }

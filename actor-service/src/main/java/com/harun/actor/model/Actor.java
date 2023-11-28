@@ -33,12 +33,4 @@ public class Actor implements Serializable {
     private Date updateDate;
     private Set<String> movieTitles;
     private StatusEnum status = StatusEnum.ACTIVE;
-
-    public void setId(String id) {
-        if (this.id == null) {
-            this.id = id;
-        } else {
-            throw new IllegalStateException("ID can't be updated");
-        }
-    }
 }
