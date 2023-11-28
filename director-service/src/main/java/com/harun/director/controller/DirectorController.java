@@ -35,7 +35,7 @@ public class DirectorController implements BaseController<DirectorDTO, Long> {
     @Operation(summary = "Save Director")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Director Created", content = {
-                    @Content(mediaType = "application/json", schema =
+                    @Content(schema =
                     @Schema(implementation = Response.class))
             })
     })
@@ -48,8 +48,7 @@ public class DirectorController implements BaseController<DirectorDTO, Long> {
     @Operation(summary = "Update Director")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @PutMapping("/{id}")
@@ -62,8 +61,7 @@ public class DirectorController implements BaseController<DirectorDTO, Long> {
     @Operation(summary = "Get Director")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @GetMapping("/{id}")
@@ -86,8 +84,7 @@ public class DirectorController implements BaseController<DirectorDTO, Long> {
     @Operation(summary = "Get All Directors")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @GetMapping()

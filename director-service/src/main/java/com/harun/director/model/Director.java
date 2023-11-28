@@ -2,6 +2,7 @@ package com.harun.director.model;
 
 import com.harun.common.base.BaseEntity;
 
+import com.harun.common.constant.GeneralErrorCodeConstants;
 import com.harun.director.annotation.phonenumber.PhoneNumberValidation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
@@ -25,10 +26,10 @@ import java.util.Date;
 @Schema(name = "Director", description = "All details about the Director")
 public class Director extends BaseEntity implements Serializable {
     @NotNull
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 30, message = GeneralErrorCodeConstants.LENGTH_NOT_VALID)
     private String name;
     @NotNull
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 30, message = GeneralErrorCodeConstants.LENGTH_NOT_VALID)
     private String lastName;
     private String prize;
     @Positive(message = "Age must be a positive number")

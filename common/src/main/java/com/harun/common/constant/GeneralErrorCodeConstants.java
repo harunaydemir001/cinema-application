@@ -12,4 +12,5 @@ public class GeneralErrorCodeConstants {
     public static final String OUT_OF_MEMORY = "ERR-009";
     public static final String CONFIGURATION_ERROR = "ERR-010";
     public static final  String NO_SUCH_MESSAGE= "ERR-011";
+    public static final  String LENGTH_NOT_VALID= "ERR-012";
 }

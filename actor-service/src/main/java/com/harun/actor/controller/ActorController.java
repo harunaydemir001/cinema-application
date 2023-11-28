@@ -36,8 +36,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     @Operation(summary = "Save Actor")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Actor Created", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @PostMapping
@@ -49,8 +48,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     @Operation(summary = "Update Actor")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @PutMapping("/{id}")
@@ -74,8 +72,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     @Operation(summary = "Get Actor")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @GetMapping("/{id}")
@@ -86,8 +83,7 @@ public class ActorController implements BaseController<ActorDTO, String> {
     @Operation(summary = "Get All Actors")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
 

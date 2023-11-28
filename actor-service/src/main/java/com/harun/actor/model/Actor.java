@@ -1,8 +1,11 @@
 package com.harun.actor.model;
 
+import com.harun.common.constant.GeneralErrorCodeConstants;
 import com.harun.common.enums.StatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,9 +28,11 @@ public class Actor implements Serializable {
     @Id
     @Indexed(unique = true)
     private String id;
-    @NotNull
+    @NotBlank
+    @Size(min = 3, max = 30, message = GeneralErrorCodeConstants.LENGTH_NOT_VALID)
     private String name;
-    @NotNull
+    @NotBlank
+    @Size(min = 3, max = 30, message = GeneralErrorCodeConstants.LENGTH_NOT_VALID)
     private String lastName;
     @NotNull
     private Date updateDate;

@@ -35,8 +35,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     @Operation(summary = "Save Movie")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Movie Created", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @PostMapping
@@ -48,7 +47,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     @Operation(summary = "Update Movie")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
+                    @Content(schema =
                     @Schema(implementation = Response.class))
             })
     })
@@ -73,8 +72,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     @Operation(summary = "Get Movie")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @GetMapping("/{id}")
@@ -85,8 +83,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     @Operation(summary = "Get All Movies")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @GetMapping()
@@ -117,8 +114,7 @@ public class MovieController implements BaseController<MovieDTO, Long> {
     @Operation(summary = "Get Actor")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
-                    @Content(mediaType = "application/json", schema =
-                    @Schema(implementation = Response.class))
+                    @Content(schema = @Schema(implementation = Response.class))
             })
     })
     @GetMapping("actor/{id}")
