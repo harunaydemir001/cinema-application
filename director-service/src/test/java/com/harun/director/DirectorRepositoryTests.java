@@ -80,6 +80,7 @@ public class DirectorRepositoryTests extends BaseTest {
                 .withBirthDay(new Date())
                 .build();
 
+        directorRepository.save(expectedDirector);
         directorRepository.save(expectedDirectorTwo);
         directorRepository.save(expectedDirectorThree);
         //When

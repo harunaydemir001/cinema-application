@@ -5,8 +5,10 @@ import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.actorserviceapi.service.ActorServiceClientService;
 import com.harun.common.enums.StatusEnum;
 import com.harun.common.util.JsonUtil;
+import com.harun.common.util.ResponseExceptionUtil;
 import com.harun.directorserviceapi.dto.DirectorDTO;
 import com.harun.directorserviceapi.service.DirectorServiceClientService;
+import com.harun.movie.constant.MovieErrorCodeConstant;
 import com.harun.movie.mapper.MapperGenerator;
 import com.harun.movie.mapper.MapperGeneratorSingleton;
 import com.harun.movie.mapper.PageMapper;
@@ -24,6 +26,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +43,7 @@ public class MovieService implements IMovieService {
     private final MovieRepository movieRepository;
     private final ActorServiceClientService actorServiceClientService;
     private final DirectorServiceClientService directorServiceClientService;
+    private final ResponseExceptionUtil responseExceptionUtil;
 
     @Override
     public MovieDTO save(MovieDTO movieDTO) {
@@ -112,6 +116,10 @@ public class MovieService implements IMovieService {
 
     @Override
     public ActorDTO getActorById(String actorId) {
+        ActorDTO actorDTO = actorServiceClientService.get(actorId);
+        if(actorDTO.getLastName().equals("fdg")){
+            responseExceptionUtil.throwResponseException(HttpStatus.NOT_ACCEPTABLE, MovieErrorCodeConstant.LASTNAME_CANT_BE_FDG);
+        }
         return actorServiceClientService.get(actorId);
     }
 }

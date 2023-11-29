@@ -8,7 +8,8 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication(scanBasePackages = {
         "com.harun.actorserviceapi",
         "com.harun.directorserviceapi",
-        "com.harun.movie"
+        "com.harun.movie",
+        "com.harun.common.util"
 })
 @EnableCaching
 public class MovieServiceApplication {
