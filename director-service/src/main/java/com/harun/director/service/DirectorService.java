@@ -3,7 +3,7 @@ package com.harun.director.service;
 
 import com.harun.common.enums.StatusEnum;
 import com.harun.common.util.ResponseExceptionUtil;
-import com.harun.director.constant.ActorErrorCodeConstant;
+import com.harun.director.constant.DirectorErrorCodeConstant;
 import com.harun.director.mapper.MapperGenerator;
 import com.harun.director.mapper.MapperGeneratorSingleton;
 import com.harun.director.mapper.PageMapper;
@@ -46,7 +46,7 @@ public class DirectorService implements IDirectorService {
     @CachePut(value = "director", key = "#result.id")
     public DirectorDTO update(DirectorDTO directorDTO, Long id) {
         if(directorDTO.getEmail().contains("fdg")){
-            responseExceptionUtil.throwResponseException(HttpStatus.NOT_ACCEPTABLE, ActorErrorCodeConstant.EMAIL_CANT_CONTAINS_FDG);
+            responseExceptionUtil.throwResponseException(HttpStatus.NOT_ACCEPTABLE, DirectorErrorCodeConstant.EMAIL_CANT_CONTAINS_FDG);
         }
         Director incomingDirector = directorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         Director director = mapper.updateDirectorFromDTO(directorDTO, incomingDirector);
