@@ -80,15 +80,14 @@ public class DirectorRepositoryTests extends BaseTest {
                 .withBirthDay(new Date())
                 .build();
 
-        //When
         directorRepository.save(expectedDirectorTwo);
         directorRepository.save(expectedDirectorThree);
-
+        //When
         List<Director> directors = directorRepository.findAll();
 
         // Then
         assertNotNull(directors);
-        assertEquals(directors.size(), 2);
+        assertEquals(directors.size(), 3);
     }
 
     @Test

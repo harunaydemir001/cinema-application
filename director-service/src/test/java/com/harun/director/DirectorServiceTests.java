@@ -167,5 +167,4 @@ public class DirectorServiceTests extends BaseTest {
         assertEquals(3, drcPage.getTotalElements());
         verify(directorRepositoryMock, times(1)).findAll(Pageable.unpaged());
     }
-
 }
