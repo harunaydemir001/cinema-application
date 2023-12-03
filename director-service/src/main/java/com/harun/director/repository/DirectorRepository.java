@@ -1,6 +1,7 @@
 package com.harun.director.repository;
 
 import com.harun.director.model.Director;
+import com.harun.director.projection.IdProjection;
 import com.harun.directorserviceapi.dto.DirectorDTO;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -12,6 +13,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.util.ObjectUtils;
+
+import java.util.Collection;
 
 
 public interface DirectorRepository extends JpaRepository<Director, Long>, JpaSpecificationExecutor<Director> {
@@ -77,4 +80,5 @@ public interface DirectorRepository extends JpaRepository<Director, Long>, JpaSp
 
         };
     }
+    Collection<IdProjection> findIdByName(String name);
 }

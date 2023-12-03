@@ -98,4 +98,15 @@ public class DirectorController implements BaseController<DirectorDTO, Long> {
                                            @Parameter(description = "Director DTO") @RequestBody() DirectorDTO directorDTO) {
         return ResponseFactory.createResponse(iDirectorService.filter(pageable, directorDTO), HttpStatus.OK);
     }
+
+    @Operation(summary = "Get Directors Id By Name")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "HTTP Status OK", content = {
+                    @Content(schema = @Schema(implementation = Response.class))
+            })
+    })
+    @GetMapping("/getIdByName")
+    public ResponseEntity<Response> findIdByName(@Parameter(description = "Director Name") @RequestParam String name) {
+        return ResponseFactory.createResponse(iDirectorService.findIdByName(name), HttpStatus.OK);
+    }
 }

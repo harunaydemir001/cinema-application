@@ -8,6 +8,7 @@ import com.harun.director.mapper.MapperGenerator;
 import com.harun.director.mapper.MapperGeneratorSingleton;
 import com.harun.director.mapper.PageMapper;
 import com.harun.director.model.Director;
+import com.harun.director.projection.IdProjection;
 import com.harun.director.repository.DirectorRepository;
 import com.harun.directorserviceapi.dto.DirectorDTO;
 import jakarta.persistence.EntityNotFoundException;
@@ -24,6 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -82,5 +84,10 @@ public class DirectorService implements IDirectorService {
         Page<Director> directorPage = directorRepository.findAll(pageable);
         List<DirectorDTO> directorDTOList = mapper.directorToDirectorDTO(directorPage.getContent());
         return new PageImpl<>(directorDTOList, pageable, directorPage.getTotalElements());
+    }
+
+    @Override
+    public Collection<IdProjection> findIdByName(String name) {
+        return directorRepository.findIdByName(name);
     }
 }
