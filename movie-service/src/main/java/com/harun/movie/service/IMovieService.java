@@ -1,12 +1,14 @@
 package com.harun.movie.service;
 
 import com.harun.actorserviceapi.dto.ActorDTO;
+import com.harun.common.base.BaseDTO;
 import com.harun.common.base.BaseService;
 import com.harun.movieserviceapi.dto.MovieAndActorDTO;
 import com.harun.movieserviceapi.dto.MovieDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -21,7 +23,7 @@ public interface IMovieService extends BaseService<MovieDTO, Long> {
 
     MovieAndActorDTO combineFilmAndActors(String title);
 
-    Map<String, Page> getAllData();
+    Map<String, Page<? extends BaseDTO<? extends Serializable>>> getAllData();
 
     ActorDTO getActorById(String actorId);
 }

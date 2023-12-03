@@ -30,7 +30,7 @@ public class DirectorServiceClientFallback implements DirectorServiceClient {
 
     @Override
     public ResponseEntity<Response> get(String id) {
-        return ResponseFactory.createResponse(DirectorDTO.builder().build(), HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new DirectorDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override

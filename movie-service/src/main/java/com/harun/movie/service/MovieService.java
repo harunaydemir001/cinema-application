@@ -3,6 +3,7 @@ package com.harun.movie.service;
 
 import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.actorserviceapi.service.ActorServiceClientService;
+import com.harun.common.base.BaseDTO;
 import com.harun.common.enums.StatusEnum;
 import com.harun.common.util.JsonUtil;
 import com.harun.common.util.ResponseExceptionUtil;
@@ -30,8 +31,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 @Transactional
@@ -103,7 +106,7 @@ public class MovieService implements IMovieService {
     }
 
     @Override
-    public Map<String, Page> getAllData() {
+    public Map<String, Page<? extends BaseDTO<? extends Serializable>>> getAllData() {
         Page<ActorDTO> allActors = actorServiceClientService.getAll(Pageable.unpaged());
         Page<DirectorDTO> allDirectors = directorServiceClientService.getAll(Pageable.unpaged());
         Page<MovieDTO> allMovies = getAll(Pageable.unpaged());
@@ -117,9 +120,8 @@ public class MovieService implements IMovieService {
     @Override
     public ActorDTO getActorById(String actorId) {
         ActorDTO actorDTO = actorServiceClientService.get(actorId);
-        if(actorDTO.getLastName().equals("fdg")){
-            responseExceptionUtil.throwResponseException(HttpStatus.NOT_ACCEPTABLE, MovieErrorCodeConstant.LASTNAME_CANT_BE_FDG);
-        }
-        return actorServiceClientService.get(actorId);
+        if (Objects.equals(actorDTO, new ActorDTO()))
+            responseExceptionUtil.throwResponseException(HttpStatus.NOT_FOUND, MovieErrorCodeConstant.OBJECT_NOT_FOUND, "Actor");
+        return actorDTO;
     }
 }
