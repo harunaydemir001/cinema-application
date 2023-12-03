@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.ArrayList;
 
 public class PageUtil {
-    public static Page<String> EmptyPage(Pageable pageable) {
+    public static Page<String> emptyPage(Pageable pageable) {
         var list = new ArrayList<String>();
         list.add("Empty Page");
         return new PageImpl<>(list, pageable, list.size());
