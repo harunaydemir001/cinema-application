@@ -3,6 +3,7 @@ package com.harun.directorserviceapi.client;
 
 import com.harun.common.factory.ResponseFactory;
 import com.harun.common.model.Response;
+import com.harun.common.util.PageUtil;
 import com.harun.directorserviceapi.dto.DirectorDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,11 +36,11 @@ public class DirectorServiceClientFallback implements DirectorServiceClient {
 
     @Override
     public ResponseEntity<Response> getAll(Pageable pageable) {
-        return ResponseFactory.createResponse(Page.empty(), HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(PageUtil.EmptyPage(pageable), HttpStatus.NOT_FOUND);
     }
 
     @Override
     public ResponseEntity<Response> filter(Pageable pageable, DirectorDTO directorDTO) {
-        return ResponseFactory.createResponse(Page.empty(), HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(PageUtil.EmptyPage(pageable), HttpStatus.NOT_FOUND);
     }
 }

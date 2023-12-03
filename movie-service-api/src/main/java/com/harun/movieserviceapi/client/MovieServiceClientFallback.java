@@ -3,6 +3,7 @@ package com.harun.movieserviceapi.client;
 
 import com.harun.common.factory.ResponseFactory;
 import com.harun.common.model.Response;
+import com.harun.common.util.PageUtil;
 import com.harun.movieserviceapi.dto.MovieAndActorDTO;
 import com.harun.movieserviceapi.dto.MovieDTO;
 import org.springframework.data.domain.Page;
@@ -38,12 +39,12 @@ public class MovieServiceClientFallback implements MovieServiceClient {
 
     @Override
     public ResponseEntity<Response> getAll(Pageable pageable) {
-        return ResponseFactory.createResponse(Page.empty(), HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(PageUtil.EmptyPage(pageable), HttpStatus.NOT_FOUND);
     }
 
     @Override
     public ResponseEntity<Response> filter(Pageable pageable, MovieDTO movieDTO) {
-        return ResponseFactory.createResponse(Page.empty(), HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(PageUtil.EmptyPage(pageable), HttpStatus.NOT_FOUND);
     }
 
     @Override

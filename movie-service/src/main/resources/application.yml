@@ -24,4 +24,7 @@ spring:
     active: "prod"
   config:
     import: "optional:configserver:http://localhost:8070/"
-
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
