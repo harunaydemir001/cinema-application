@@ -10,17 +10,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+/**
+ * FallBack for {@link DirectorServiceClient}
+ */
+
 @Component
 public class DirectorServiceClientFallback implements DirectorServiceClient {
 
     @Override
     public ResponseEntity<Response> save(DirectorDTO directorDTO) {
-        return ResponseFactory.createResponse(directorDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new DirectorDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override
     public ResponseEntity<Response> update(String id, DirectorDTO directorDTO) {
-        return ResponseFactory.createResponse(directorDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new DirectorDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override

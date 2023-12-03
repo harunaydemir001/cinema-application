@@ -12,17 +12,21 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 
+/**
+ * FallBack for {@link ActorServiceClient}
+ */
+
 @Component
 public class ActorServiceClientFallback implements ActorServiceClient {
 
     @Override
     public ResponseEntity<Response> save(ActorDTO actorDTO) {
-        return ResponseFactory.createResponse(actorDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new ActorDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override
     public ResponseEntity<Response> update(String id, ActorDTO actorDTO) {
-        return ResponseFactory.createResponse(actorDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new ActorDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override

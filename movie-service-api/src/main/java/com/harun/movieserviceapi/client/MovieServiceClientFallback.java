@@ -13,17 +13,21 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
+/**
+ * FallBack for {@link MovieServiceClient}
+ */
+
 @Component
 public class MovieServiceClientFallback implements MovieServiceClient {
 
     @Override
     public ResponseEntity<Response> save(MovieDTO movieDTO) {
-        return ResponseFactory.createResponse(movieDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new MovieDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override
     public ResponseEntity<Response> update(String id, MovieDTO movieDTO) {
-        return ResponseFactory.createResponse(movieDTO, HttpStatus.NOT_FOUND);
+        return ResponseFactory.createResponse(new MovieDTO(), HttpStatus.NOT_FOUND);
     }
 
     @Override
