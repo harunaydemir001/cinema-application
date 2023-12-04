@@ -58,18 +58,19 @@ Bu mikroservis projesi, modern teknolojileri kullanarak geliştirilmiş ve ölç
 
 ### Tasarım Desenleri (Design Patterns)
 
-- **Factory Design Pattern:**: Nesne yaratma sorumluluğunu taşıyan bir sınıfın yaratılmasını sağlar.
+- **Factory Design Pattern**: Nesne yaratma sorumluluğunu taşıyan bir sınıfın yaratılmasını sağlar.
 
-- **Singleton Design Pattern:**: Bir sınıfın yalnızca bir örneğinin oluşturulmasını ve genel bir erişim noktası sağlamayı amaçlar.
+- **Singleton Design Pattern**: Bir sınıfın yalnızca bir örneğinin oluşturulmasını ve genel bir erişim noktası sağlamayı amaçlar.
 
-- **Builder Design Pattern:**: Karmaşık bir nesnenin adım adım oluşturma sürecini kontrol etmeyi amaçlar.
+- **Builder Design Pattern**: Karmaşık bir nesnenin adım adım oluşturma sürecini kontrol etmeyi amaçlar.
 
-- **Model-View-Controller (MVC) Design Pattern:**: Kullanıcı arayüzü ile uygulama mantığı ve veri arasındaki ayrımı sağlar.
+- **Model-View-Controller (MVC) Design Pattern**: Kullanıcı arayüzü ile uygulama mantığı ve veri arasındaki ayrımı sağlar.
 
 Bu teknoloji, frameworkler ve tasarım desenleri, bir Java Spring Boot mikroservis projesi geliştirmek için geniş bir yelpazeyi kapsar.
 
 ## Bağımlılıklar
 
+- [Spring Boot 3](https://spring.io/projects/spring-boot)
 - [Apache Kafka](https://kafka.apache.org/)
 - [Redis](https://redis.io/)
 - [Maven](https://maven.apache.org/)
@@ -80,3 +81,5 @@ Bu teknoloji, frameworkler ve tasarım desenleri, bir Java Spring Boot mikroserv
 - [JUnit 5 ve Mockito](https://junit.org/junit5/)
 - [Resilient4j](https://resilience4j.readme.io/)
 - [MySQL](https://www.mysql.com/)
+- [Lombok](https://projectlombok.org/)
+- [Java 21](https://spring.io/blog/2023/09/20/hello-java-21)
