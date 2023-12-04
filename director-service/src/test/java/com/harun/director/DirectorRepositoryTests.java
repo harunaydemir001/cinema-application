@@ -19,8 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-//@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.HSQLDB)
-//@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2) status!=WHERE olduğu için çalışmıyor
 public class DirectorRepositoryTests extends BaseTest {
 
     @Autowired
