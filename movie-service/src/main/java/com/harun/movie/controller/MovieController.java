@@ -106,8 +106,8 @@ public class MovieController implements BaseController<MovieDTO, Long> {
 
     @Operation(summary = "Get All Movies, Actors and Directors")
     @GetMapping("/all-data")
-    public ResponseEntity<Response> getAllData() {
-        return ResponseFactory.createResponse(iMovieService.getAllData(), HttpStatus.OK);
+    public ResponseEntity<Response> getAllData(@ParameterObject Pageable pageable) {
+        return ResponseFactory.createResponse(iMovieService.getAllData(pageable), HttpStatus.OK);
     }
 
 

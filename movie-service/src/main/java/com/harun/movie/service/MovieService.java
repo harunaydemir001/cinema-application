@@ -17,6 +17,9 @@ import com.harun.movie.model.Movie;
 import com.harun.movie.repository.MovieRepository;
 import com.harun.movieserviceapi.dto.MovieAndActorDTO;
 import com.harun.movieserviceapi.dto.MovieDTO;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -74,12 +77,14 @@ public class MovieService implements IMovieService {
 
     @Override
     @Cacheable(value = "movie", key = "#id")
+    @Retry(name = "retryApi")
     public MovieDTO get(Long id) {
         Movie movie = movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return mapper.movieToMovieDTO(movie);
     }
 
     @Override
+    @RateLimiter(name = "rateLimiterApi")
     public Page<MovieDTO> filter(Pageable pageable, MovieDTO movieDTO) {
         Page<Movie> page = movieRepository.findByFilter(pageable, movieDTO);
         List<MovieDTO> movieDTOList = mapper.movieToMovieDTO(page.getContent());
@@ -106,10 +111,11 @@ public class MovieService implements IMovieService {
     }
 
     @Override
-    public Map<String, Page<? extends BaseDTO<? extends Serializable>>> getAllData() {
-        Page<ActorDTO> allActors = actorServiceClientService.getAll(Pageable.unpaged());
-        Page<DirectorDTO> allDirectors = directorServiceClientService.getAll(Pageable.unpaged());
-        Page<MovieDTO> allMovies = getAll(Pageable.unpaged());
+    @CircuitBreaker(name = "circuitBreakerApi", fallbackMethod = "getAllDataFallback")
+    public Map<String, Page<? extends BaseDTO<? extends Serializable>>> getAllData(Pageable pageable) {
+        Page<ActorDTO> allActors = actorServiceClientService.getAll(pageable);
+        Page<DirectorDTO> allDirectors = directorServiceClientService.getAll(pageable);
+        Page<MovieDTO> allMovies = getAll(pageable);
 
         return Map.of(
                 "allActors", allActors,
@@ -123,5 +129,16 @@ public class MovieService implements IMovieService {
         if (Objects.equals(actorDTO, new ActorDTO()))
             responseExceptionUtil.throwResponseException(HttpStatus.NOT_FOUND, MovieErrorCodeConstant.OBJECT_NOT_FOUND, "Actor");
         return actorDTO;
+    }
+
+    public Map<String, Page<? extends BaseDTO<? extends Serializable>>> getAllDataFallback(Pageable pageable, Exception e) {
+        Page<ActorDTO> allActors = actorServiceClientService.getAll(pageable);
+        Page<DirectorDTO> allDirectors = directorServiceClientService.getAll(pageable);
+        Page<MovieDTO> allMovies = Page.empty();
+
+        return Map.of(
+                "allActors", allActors,
+                "allDirectors", allDirectors,
+                "allMovies", allMovies);
     }
 }

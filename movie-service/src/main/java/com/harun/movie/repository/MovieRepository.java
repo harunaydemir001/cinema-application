@@ -70,7 +70,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long>, JpaSpecific
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);
             }
 
-
             if (!ObjectUtils.isEmpty(movieDTO.getSpecialFeatures())) {
                 Predicate predicate = criteriaBuilder.equal(root.get("specialFeatures"), movieDTO.getSpecialFeatures());
                 mainPredicate = criteriaBuilder.and(mainPredicate, predicate);

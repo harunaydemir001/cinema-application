@@ -21,10 +21,6 @@ public class ResponseExceptionUtil {
         throw new ResponseException(code, messageUtil.get(code, args), httpStatus);
     }
 
-    public void throwResponseException(HttpStatus httpStatus, String subMessage, String code, Object... args) {
-        throw new ResponseException(code, (messageUtil.get(code, args)) + " " + subMessage, httpStatus);
-    }
-
     public void throwResponseException(String message, HttpStatus httpStatus) {
         throw new ResponseException(message, httpStatus);
     }

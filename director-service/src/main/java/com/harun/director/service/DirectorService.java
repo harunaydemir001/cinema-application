@@ -11,6 +11,8 @@ import com.harun.director.model.Director;
 import com.harun.director.projection.IdProjection;
 import com.harun.director.repository.DirectorRepository;
 import com.harun.directorserviceapi.dto.DirectorDTO;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -57,6 +59,7 @@ public class DirectorService implements IDirectorService {
 
     @Override
     @Cacheable(value = "director", key = "#id")
+    @Retry(name = "retryApi")
     public DirectorDTO get(Long id) {
         Director director = directorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return mapper.directorToDirectorDTO(director);
@@ -73,6 +76,7 @@ public class DirectorService implements IDirectorService {
     }
 
     @Override
+    @RateLimiter(name = "rateLimiterApi")
     public Page<DirectorDTO> filter(Pageable pageable, DirectorDTO directorDTO) {
         Page<Director> page = directorRepository.findByFilter(pageable, directorDTO);
         List<DirectorDTO> directorDTOList = mapper.directorToDirectorDTO(page.getContent());

@@ -23,7 +23,7 @@ public interface IMovieService extends BaseService<MovieDTO, Long> {
 
     MovieAndActorDTO combineFilmAndActors(String title);
 
-    Map<String, Page<? extends BaseDTO<? extends Serializable>>> getAllData();
+    Map<String, Page<? extends BaseDTO<? extends Serializable>>> getAllData(Pageable pageable);
 
     ActorDTO getActorById(String actorId);
 }
