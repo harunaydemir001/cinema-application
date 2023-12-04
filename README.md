@@ -67,3 +67,16 @@ Bu mikroservis projesi, modern teknolojileri kullanarak geliştirilmiş ve ölç
 - **Model-View-Controller (MVC) Design Pattern:**: Kullanıcı arayüzü ile uygulama mantığı ve veri arasındaki ayrımı sağlar.
 
 Bu teknoloji, frameworkler ve tasarım desenleri, bir Java Spring Boot mikroservis projesi geliştirmek için geniş bir yelpazeyi kapsar.
+
+## Bağımlılıklar
+
+- [Apache Kafka](https://kafka.apache.org/)
+- [Redis](https://redis.io/)
+- [Maven](https://maven.apache.org/)
+- [Hibernate](https://hibernate.org/)
+- [Spring Cloud Hizmetleri](https://spring.io/projects/spring-cloud)
+- [MongoDB](https://www.mongodb.com/)
+- [OpenAPI 3](https://swagger.io/specification/)
+- [JUnit 5 ve Mockito](https://junit.org/junit5/)
+- [Resilient4j](https://resilience4j.readme.io/)
+- [MySQL](https://www.mysql.com/)
