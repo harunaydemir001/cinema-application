@@ -68,7 +68,7 @@ public class DirectorServiceTests extends BaseTest {
 
     @Test
     @DisplayName("JUnit test for save director operation")
-    public void givenDirectorDTOObject_whenCreateDirectorDTO_thenReturnSavedDirectorDTO() {
+    public void givenDirectorDTOObject_whenCreateDirector_thenReturnSavedDirectorDTO() {
         //Given
         doReturn(director).when(mapper).directorDTOToDirector(directorDTO);
         doReturn(director).when(directorRepositoryMock).save(director);
