@@ -56,4 +56,22 @@ Bu mikroservis projesi, modern teknolojileri kullanarak geliştirilmiş ve ölç
 - **Specification**: Belirli bir veritabanı sorgusu için kriterleri ifade etmek için kullanılır.
 - **Circuit Breaker**: FeignClient için fallback oluşturulmuştur. Method levelde fallback metodu oluşturulmuştur.
 
-Bu teknoloji ve framework'ler, bir Java Spring Boot mikroservis projesi geliştirmek için geniş bir yelpazeyi kapsar.
+### Tasarım Desenleri (Design Patterns)
+
+1. **Factory Design Pattern:**
+   - Nesne yaratma sorumluluğunu taşıyan bir sınıfın yaratılmasını sağlar.
+   - Örnek: Nesne oluşturmayı yöneten bir `Factory` sınıfı.
+
+2. **Singleton Design Pattern:**
+   - Bir sınıfın yalnızca bir örneğinin oluşturulmasını ve genel bir erişim noktası sağlamayı amaçlar.
+   - Örnek: Yalnızca bir tane `ConfigurationManager` örneğine izin veren bir singleton sınıfı.
+
+3. **Builder Design Pattern:**
+   - Karmaşık bir nesnenin adım adım oluşturma sürecini kontrol etmeyi amaçlar.
+   - Örnek: `Meal` sınıfının örneğini adım adım oluşturan bir `MealBuilder` sınıfı.
+
+4. **Model-View-Controller (MVC) Design Pattern:**
+   - Kullanıcı arayüzü ile uygulama mantığı ve veri arasındaki ayrımı sağlar.
+   - Örnek: Spring Boot uygulamalarında kullanılan MVC mimarisi.
+
+Bu teknoloji, frameworkler ve tasarım desenleri, bir Java Spring Boot mikroservis projesi geliştirmek için geniş bir yelpazeyi kapsar.
