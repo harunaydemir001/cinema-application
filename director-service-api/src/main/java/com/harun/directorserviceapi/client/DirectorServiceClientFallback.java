@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 /**
- * FallBack for {@link DirectorServiceClient}
+ * Fallback for {@link DirectorServiceClient}
  */
 
 @Component

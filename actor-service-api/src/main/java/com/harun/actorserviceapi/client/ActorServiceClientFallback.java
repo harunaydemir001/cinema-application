@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.Collections;
 
 /**
- * FallBack for {@link ActorServiceClient}
+ * Fallback for {@link ActorServiceClient}
  */
 
 @Component

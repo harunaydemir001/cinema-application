@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * FallBack for {@link MovieServiceClient}
+ * Fallback for {@link MovieServiceClient}
  */
 
 @Component
