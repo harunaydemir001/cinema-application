@@ -9,6 +9,7 @@ import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.common.enums.StatusEnum;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,11 +44,11 @@ public class ActorService implements IActorService {
 
     @Override
     @CachePut(value = "actor", key = "#result.id")
+    @TimeLimiter(name = "timeLimiterApi")
     public ActorDTO update(ActorDTO actorDTO, String id) {
         Actor incomingActor = actorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         Actor actor = mapper.updateActorFromDTO(actorDTO, incomingActor);
         return mapper.actorToActorDTO(actorRepository.save(actor));
-
     }
 
     @Override

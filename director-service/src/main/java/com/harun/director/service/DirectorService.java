@@ -13,6 +13,7 @@ import com.harun.director.repository.DirectorRepository;
 import com.harun.directorserviceapi.dto.DirectorDTO;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -48,6 +49,7 @@ public class DirectorService implements IDirectorService {
 
     @Override
     @CachePut(value = "director", key = "#result.id")
+    @TimeLimiter(name = "timeLimiterApi")
     public DirectorDTO update(DirectorDTO directorDTO, Long id) {
         if(directorDTO.getEmail().contains("fdg")){
             responseExceptionUtil.throwResponseException(HttpStatus.NOT_ACCEPTABLE, DirectorErrorCodeConstant.EMAIL_CANT_CONTAINS_FDG);

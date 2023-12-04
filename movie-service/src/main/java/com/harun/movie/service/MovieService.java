@@ -20,6 +20,7 @@ import com.harun.movieserviceapi.dto.MovieDTO;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -59,6 +60,7 @@ public class MovieService implements IMovieService {
 
     @Override
     @CachePut(value = "movie", key = "#result.id")
+    @TimeLimiter(name = "timeLimiterApi")
     public MovieDTO update(MovieDTO movieDTO, Long id) {
         Movie incomingMovie = movieRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         Movie movie = mapper.updateMovieFromDTO(movieDTO, incomingMovie);
