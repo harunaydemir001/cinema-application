@@ -45,6 +45,9 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class MovieService implements IMovieService {
     private static final Logger logger = LoggerFactory.getLogger(MovieService.class);
+    private static final String ALL_ACTORS = "allActors";
+    private static final String ALL_DIRECTORS = "allDirectors";
+    private static final String ALL_MOVIES = "allMovies";
     MapperGenerator mapper = MapperGeneratorSingleton.INSTANCE;
 
     private final MovieRepository movieRepository;
@@ -120,9 +123,9 @@ public class MovieService implements IMovieService {
         Page<MovieDTO> allMovies = getAll(pageable);
 
         return Map.of(
-                "allActors", allActors,
-                "allDirectors", allDirectors,
-                "allMovies", allMovies);
+                ALL_ACTORS, allActors,
+                ALL_DIRECTORS, allDirectors,
+                ALL_MOVIES, allMovies);
     }
 
     @Override
@@ -139,8 +142,8 @@ public class MovieService implements IMovieService {
         Page<MovieDTO> allMovies = Page.empty();
 
         return Map.of(
-                "allActors", allActors,
-                "allDirectors", allDirectors,
-                "allMovies", allMovies);
+                ALL_ACTORS, allActors,
+                ALL_DIRECTORS, allDirectors,
+                ALL_MOVIES, allMovies);
     }
 }

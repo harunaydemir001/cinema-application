@@ -118,10 +118,10 @@ public class DirectorServiceTests extends BaseTest {
         doReturn(Optional.of(director)).when(directorRepositoryMock).findById(director.getId());
 
         // When
-        DirectorDTO savedDirectorDTO = directorService.get(director.getId());
+        DirectorDTO dto = directorService.get(director.getId());
 
         // Then
-        assertNotNull(savedDirectorDTO);
+        assertNotNull(dto);
         verify(directorRepositoryMock, times(1)).findById(director.getId());
     }
 
