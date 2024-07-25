@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/actor-service-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/actor-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/actor-service/target/generated-sources/querydsl" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/director-service-api/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/director-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/message-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/message/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/movie-service-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/movie-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/music-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/nofiticition-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notiticition-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/registry-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/security/src/main/java" charset="UTF-8" />
   </component>
 </project>

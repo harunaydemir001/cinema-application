@@ -1,5 +1,6 @@
 package com.harun.actor.controller;
 
+import com.harun.actor.mapper.MapperGeneratorSingleton;
 import com.harun.actor.service.IActorService;
 import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.common.base.BaseController;
@@ -12,6 +13,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +34,7 @@ import org.springframework.web.bind.annotation.*;
 public class ActorController implements BaseController<ActorDTO, String> {
 
     private final IActorService iActorService;
+
 
     @Override
     @Operation(summary = "Save Actor")

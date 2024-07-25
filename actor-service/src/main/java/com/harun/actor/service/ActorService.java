@@ -56,6 +56,7 @@ public class ActorService implements IActorService {
     public void delete(String id) {
         Actor actor = actorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         actor.setStatus(StatusEnum.DELETED);
+        logger.error("Actor status change to " + StatusEnum.DELETED + " with id: " + id);
         if (logger.isInfoEnabled())
             logger.info("Actor status change to " + StatusEnum.DELETED + " with id: " + id);
         actorRepository.save(actor);

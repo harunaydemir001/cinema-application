@@ -3,10 +3,8 @@ package com.harun.actor.service;
 
 import com.harun.actorserviceapi.dto.ActorDTO;
 import com.harun.common.base.BaseService;
-import com.harun.common.model.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

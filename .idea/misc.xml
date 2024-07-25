@@ -9,7 +9,26 @@
         <option value="$PROJECT_DIR$/movie-service/pom.xml" />
         <option value="$PROJECT_DIR$/actor/pom.xml" />
         <option value="$PROJECT_DIR$/actor-service/pom.xml" />
+        <option value="$PROJECT_DIR$/registry-service/pom.xml" />
+        <option value="$PROJECT_DIR$/director-service/pom.xml" />
+        <option value="$PROJECT_DIR$/movie-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/actor-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway-server/pom.xml" />
+        <option value="$PROJECT_DIR$/director-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/message/pom.xml" />
+        <option value="$PROJECT_DIR$/message-service/pom.xml" />
+        <option value="$PROJECT_DIR$/music-service/pom.xml" />
+        <option value="$PROJECT_DIR$/nofiticition-service/pom.xml" />
+        <option value="$PROJECT_DIR$/notiticition-service/pom.xml" />
+        <option value="$PROJECT_DIR$/security/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/message-service/pom.xml" />
+        <option value="$PROJECT_DIR$/message/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK">

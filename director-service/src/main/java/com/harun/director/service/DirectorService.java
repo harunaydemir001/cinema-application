@@ -29,7 +29,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -63,6 +65,20 @@ public class DirectorService implements IDirectorService {
     @Cacheable(value = "director", key = "#id")
     @Retry(name = "retryApi")
     public DirectorDTO get(Long id) {
+        int a = 10;
+        int b =  a;
+        a = 20;
+        System.out.println(a);
+        System.out.println(b);
+
+        Map<String ,Integer> amap= new HashMap<String, Integer>();
+        amap.put("value", 10);
+        Map<String ,Integer> bmap= new HashMap<String, Integer>();
+        bmap = amap;
+
+        amap.put("value", 20);
+        System.out.println(amap);
+        System.out.println(bmap);
         Director director = directorRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         return mapper.directorToDirectorDTO(director);
     }

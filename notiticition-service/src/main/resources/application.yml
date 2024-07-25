@@ -1,0 +1,35 @@
+email:
+  provider:
+    properties:
+      mail:
+        smtp:
+          host: smtp-relay.brevo.com
+          starttls:
+            enable: 'true'
+          port: '587'
+          auth: 'true'
+    auth:
+      username: xsmtpsib-5061fd98c4b1cdf1c4566e605f9d6cafb9364a0520602cc646c095fe2622bbcb-ADxYBZXNPQO1WkTa
+      password: xsmtpsib-5061fd98c4b1cdf1c4566e605f9d6cafb9364a0520602cc646c095fe2622bbcb-ADxYBZXNPQO1WkTa
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/email?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+    open-in-view: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  application:
+    name: "notiticition-service"
+  profiles:
+    active: "prod"
+  config:
+    import: "optional:configserver:http://localhost:8070/"
+

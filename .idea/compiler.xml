@@ -8,8 +8,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="config-server" />
+        <module name="security" />
+        <module name="movie-service-api" />
+        <module name="director-service-api" />
+        <module name="registry-service" />
+        <module name="actor-service-api" />
+        <module name="music-service" />
+        <module name="gateway-server" />
       </profile>
-      <profile name="Annotation profile for movie" enabled="true">
+      <profile name="Annotation profile for notiticition-service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -19,17 +27,35 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok-mapstruct-binding/0.2.0/lombok-mapstruct-binding-0.2.0.jar" />
         </processorPath>
-        <module name="common" />
+        <module name="director-service" />
+        <module name="notiticition-service" />
         <module name="movie-service" />
+        <module name="common" />
         <module name="actor-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="message-service" target="21" />
+      <module name="nofiticition-service" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="actor-service" options="-parameters" />
+      <module name="actor-service-api" options="-parameters" />
       <module name="common" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="director-service" options="-parameters" />
+      <module name="director-service-api" options="-parameters" />
+      <module name="gateway-server" options="-parameters" />
+      <module name="message-service" options="-parameters" />
       <module name="movie-service" options="-parameters" />
+      <module name="movie-service-api" options="-parameters" />
+      <module name="music-service" options="-parameters" />
+      <module name="nofiticition-service" options="-parameters" />
+      <module name="notiticition-service" options="-parameters" />
+      <module name="registry-service" options="-parameters" />
+      <module name="security" options="-parameters" />
     </option>
   </component>
 </project>
